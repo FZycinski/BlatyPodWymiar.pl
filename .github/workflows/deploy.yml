@@ -18,7 +18,7 @@ jobs:
 
       - name: Run tests
         run: |
-          echo "Running tests... "
+          echo "Running tests..."
 
   deploy_staging:
     name: Deploy to Staging

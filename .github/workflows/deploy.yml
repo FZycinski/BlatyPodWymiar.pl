@@ -16,4 +16,4 @@ jobs:
             username: ${{ secrets.SSH_USERNAME }}
             password: ${{ secrets.PASSWORD }}
             port: 6022
-             
+            script: whoami

@@ -1,35 +1,58 @@
-name: Deploy to Server
-
-on:
-  push:
-    branches:
-      - main
-
+name: remote ssh command
+on: [push]
 jobs:
-  deploy:
+
+  build:
+    name: Build
     runs-on: ubuntu-latest
-
     steps:
-    - name: Set up Node.js 20
-      uses: actions/setup-node@v3
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v1.0.3
       with:
-        node-version: '20'
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: 6022
+        script: whoami
+            mkdir -p ~/.ssh
+            echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
+            ssh $SSH_USERNAME@$SSH_HOST 'cd ~/websites/test.blatypodwymiar.pl && git pull origin main && npm install && npm run build'
 
-    - name: Checkout repository
-      uses: actions/checkout@v3
 
-    - name: Setup SSH
-      uses: webfactory/ssh-agent@v0.8.0
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+# name: Deploy to Server
 
-    - name: Deploy to server
-      env:
-        SSH_HOST: ${{ secrets.SSH_HOST }}
-        SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-      run: |
-        mkdir -p ~/.ssh
-        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
-        ssh $SSH_USERNAME@$SSH_HOST 'cd ~/websites/blatypodwymiar.pl && git pull origin main && npm install && npm run build'
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Set up Node.js 20
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: '20'
+
+#     - name: Checkout repository
+#       uses: actions/checkout@v3
+
+#     - name: Setup SSH
+#       uses: webfactory/ssh-agent@v0.8.0
+#       with:
+#         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+#     - name: Deploy to server
+#       env:
+#         SSH_HOST: ${{ secrets.SSH_HOST }}
+#         SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+#       run: |
+#         mkdir -p ~/.ssh
+#         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+#         chmod 600 ~/.ssh/id_rsa
+#         ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
+#         ssh $SSH_USERNAME@$SSH_HOST 'cd ~/websites/test.blatypodwymiar.pl && git pull origin main && npm install && npm run build'

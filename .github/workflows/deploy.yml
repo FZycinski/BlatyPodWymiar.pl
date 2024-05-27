@@ -27,6 +27,7 @@ jobs:
       env:
         SSH_HOST: ${{ secrets.SSH_HOST }}
         SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-      run: 
-        rsync -avz --delete C:\xampp\htdocs\php\proj1\ $SSH_USERNAME@$SSH_HOST:~/websites/test.blatypodwymiar.pl
-        mkdir -p ~/.ssh
+      run: |
+          rsync -avz --delete C:\xampp\htdocs\php\proj1\ $SSH_USERNAME@$SSH_HOST:~/websites/test.blatypodwymiar.pl &&
+          ssh $SSH_USERNAME@$SSH_HOST 'mkdir -p ~/.ssh'
+      

@@ -1,16 +1,19 @@
 name: Check SSH connection
 
-on: [workflow_dispatch]
-
+on:
+    push:
+        branches:
+        - main
 jobs:
-  check_ssh:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Check SSH connection
-      uses: webfactory/ssh-agent@v0.8.0
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-    
-    - name: Test SSH connection
-      run: ssh -T ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}
+            ssh_login:
+              runs-on: ubuntu-latest
+              
+              steps:
+              - name: Check SSH connection
+                uses: webfactory/ssh-agent@v0.8.0
+                with:
+                  ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+              
+              - name: SSH Login
+                run: |
+                  ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}

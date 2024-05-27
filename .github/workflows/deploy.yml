@@ -27,4 +27,4 @@ jobs:
         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
-        ssh $SSH_USERNAME@$SSH_HOST 'cd /sciezka/do/projektu && git pull origin main && npm install && npm run build'
+        ssh $SSH_USERNAME@$SSH_HOST 'cd ~/websites/blatypodwymiar.pl && git pull origin main && npm install && npm run build'

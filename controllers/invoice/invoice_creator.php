@@ -5,12 +5,11 @@ require_once('../../vendor/tecnickcom/tcpdf/tcpdf.php');
 function getCurrentInvoiceNumber() {
     $filename = 'invoice_number.txt';
     if (!file_exists($filename)) {
-        file_put_contents($filename, '1'); // Jeśli plik nie istnieje, utwórz go z numerem 1
+        file_put_contents($filename, '1');
     }
     return intval(file_get_contents($filename));
 }
 
-// Funkcja do aktualizacji numeru faktury w pliku
 function updateInvoiceNumber($currentNumber) {
     $filename = 'invoice_number.txt';
     $newNumber = $currentNumber + 1;

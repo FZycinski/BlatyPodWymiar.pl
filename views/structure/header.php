@@ -69,7 +69,6 @@ body {
     <a class="active" href="/index.php">Zamówienia</a>
     <a href="/views/archive_view.php">Archiwum</a>
     <a href="/views/calculator_view.php">Kalkulator</a>
-    <a href="/views/edit_account_view.php">Profil</a>
     <a href="/controllers/api_connect.php">Zamówienia Allegro</a>
     <a href="/controllers/logout.php">Wyloguj</a>
   </div>

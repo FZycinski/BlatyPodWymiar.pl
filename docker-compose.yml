@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: localhost
+      MYSQL_DATABASE: blaty
+      MYSQL_USER: filip
+      MYSQL_PASSWORD: Qwerty123!
+    ports:
+      - "3306:3306"
+
+  app:
+    build: .
+    container_name: php-app
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - db

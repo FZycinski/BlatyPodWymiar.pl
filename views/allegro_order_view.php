@@ -9,10 +9,11 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+$config = 'config/config.php';
 
-define('CLIENT_ID', '04216eb5e228458b912d608b48c77d32');
-define('CLIENT_SECRET', '9e2pYwvK4YvR3p5rAv7wulw7hKP1oMLtSr3FFLiptsSWUetKLJiySvRisMuZ4X3D');
-define('REDIRECT_URI', 'https://blatypodwymiar.pl/views/allegro_order_view.php');
+define('CLIENT_ID', $config['client_id']);
+define('CLIENT_SECRET', $config['client_secret']);
+define('REDIRECT_URI', $config['redirect_uri']);
 define('TOKEN_URL', 'https://allegro.pl/auth/oauth/token');
 
 function getCurl($headers, $content)

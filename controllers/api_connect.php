@@ -8,8 +8,8 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: ../views/login_view.php");
     exit;
 }
-$config = include('../config/api_config.php');
 
+$config = include('../config/api_config.php');
 define('CLIENT_ID', $config['client_id']);
 define('CLIENT_SECRET', $config['client_secret']);
 define('REDIRECT_URI', $config['redirect_uri']);

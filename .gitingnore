@@ -1,5 +1,4 @@
 views/allegro_order_view.php
 controllers/api_connect.php
 /config/
-docker-compose.yml
-Dockerfile
+./config/

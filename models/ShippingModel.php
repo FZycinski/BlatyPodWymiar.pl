@@ -6,14 +6,14 @@ class ShippingModel {
         $this->mysqli = $mysqli;
     }
 
-    public function getShippingData($customerId) {
+    public function getShippingData($orderId) {
         // Przygotuj zapytanie SQL do pobrania danych klienta
         $query = "SELECT * FROM additional_order_data WHERE order_id = ?";
         
         // Przygotuj zapytanie
         if ($stmt = $this->mysqli->prepare($query)) {
             // Przypisz parametry i wykonaj zapytanie
-            $stmt->bind_param('i', $order_id);
+            $stmt->bind_param('i', $orderId);
             $stmt->execute();
             
             // Pobierz wynik zapytania
@@ -36,9 +36,8 @@ class ShippingModel {
                     ],
                     'receiver' => [
                         'name' => $result['delivery_address_firstName'] . ' ' . $result['delivery_address_lastName'],
-                        'phoneNumber' => $result['delivery_address_phoneNumber'],
                         'street' => $result['delivery_address_street'],
-                        'streetNumber' => $result[''],
+                        'streetNumber' => $result['delivery_address_streetNumber'], // Zakładam, że ta kolumna istnieje
                         'postalCode' => $result['delivery_address_zipCode'],
                         'city' => $result['delivery_address_city'],
                         'state' => 'AL',
@@ -48,9 +47,8 @@ class ShippingModel {
                     ],
                     'pickup' => [
                         'name' => $result['delivery_address_firstName'] . ' ' . $result['delivery_address_lastName'],
-                        'phoneNumber' => $result['delivery_address_phoneNumber'],
                         'street' => $result['delivery_address_street'],
-                        'streetNumber' => $result[''],
+                        'streetNumber' => $result['delivery_address_streetNumber'], // Zakładam, że ta kolumna istnieje
                         'postalCode' => $result['delivery_address_zipCode'],
                         'city' => $result['delivery_address_city'],
                         'state' => 'AL',
@@ -59,7 +57,7 @@ class ShippingModel {
                         'phone' => $result['delivery_address_phoneNumber'],
                     ],
                     'referenceNumber' => $result['order_id'],
-                    'description' => $result['item_namme'], 
+                    'description' => $result['item_name'], 
                     'packages' => [
                         [
                             'waybill' => 'string',
@@ -108,6 +106,7 @@ class ShippingModel {
                 return $shippingData;
             } else {
                 // Brak wyników - obsłuż ten przypadek w odpowiedni sposób
+                echo "Brak wyników dla podanego order_id: " . $orderId;
                 return null;
             }
         } else {
@@ -118,11 +117,15 @@ class ShippingModel {
     }
 }
 
+// Włącz wyświetlanie błędów PHP
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require_once '../config/DatabaseConnection.php';
 $mysqli = DatabaseConnection::getConnection();
 $shippingModel = new ShippingModel($mysqli);
-$order_id = 140; 
-$shippingData = $shippingModel->getShippingData($order_id);
+$orderId = 140; // Przykładowe ID zamówienia
+$shippingData = $shippingModel->getShippingData($orderId);
 
 echo '<pre>';
 print_r($shippingData);

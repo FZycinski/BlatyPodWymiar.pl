@@ -118,6 +118,7 @@ class ShippingModel {
     }
 }
 
+require_once 'config/DatabaseConnection.php';
 $mysqli = DatabaseConnection::getConnection();
 $shippingModel = new ShippingModel($mysqli);
 $customerId = 123; 

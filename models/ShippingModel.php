@@ -121,7 +121,7 @@ class ShippingModel {
 require_once '../config/DatabaseConnection.php';
 $mysqli = DatabaseConnection::getConnection();
 $shippingModel = new ShippingModel($mysqli);
-$order_id = 123; 
+$order_id = 140; 
 $shippingData = $shippingModel->getShippingData($order_id);
 
 echo '<pre>';

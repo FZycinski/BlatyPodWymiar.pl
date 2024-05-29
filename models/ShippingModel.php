@@ -8,7 +8,7 @@ class ShippingModel {
 
     public function getShippingData($customerId) {
         // Przygotuj zapytanie SQL do pobrania danych klienta
-        $query = "SELECT * FROM additional_order_data WHERE customer_id = ?";
+        $query = "SELECT * FROM additional_order_data WHERE order_id = ?";
         
         // Przygotuj zapytanie
         if ($stmt = $this->mysqli->prepare($query)) {

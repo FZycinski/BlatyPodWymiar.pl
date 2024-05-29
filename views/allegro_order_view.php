@@ -29,7 +29,6 @@ function getCurl($headers, $content)
     ));
     return $ch;
 }
-
 function getAccessToken($authorization_code)
 {
     $authorization = base64_encode(CLIENT_ID . ':' . CLIENT_SECRET);

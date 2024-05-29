@@ -13,7 +13,7 @@ class ShippingModel {
         // Przygotuj zapytanie
         if ($stmt = $this->mysqli->prepare($query)) {
             // Przypisz parametry i wykonaj zapytanie
-            $stmt->bind_param('i', $customerId);
+            $stmt->bind_param('i', $order_id);
             $stmt->execute();
             
             // Pobierz wynik zapytania
@@ -121,8 +121,8 @@ class ShippingModel {
 require_once '../config/DatabaseConnection.php';
 $mysqli = DatabaseConnection::getConnection();
 $shippingModel = new ShippingModel($mysqli);
-$customerId = 123; 
-$shippingData = $shippingModel->getShippingData($customerId);
+$order_id = 123; 
+$shippingData = $shippingModel->getShippingData($order_id);
 
 echo '<pre>';
 print_r($shippingData);

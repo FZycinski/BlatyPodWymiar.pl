@@ -13,20 +13,15 @@ class ShippingModel {
     
 
     public function getShippingData($orderId) {
-        // Przygotuj zapytanie SQL do pobrania danych klienta
         $query = "SELECT * FROM additional_order_data WHERE order_id = ?";
         
-        // Przygotuj zapytanie
         if ($stmt = $this->mysqli->prepare($query)) {
-            // Przypisz parametry i wykonaj zapytanie
             $stmt->bind_param('i', $orderId);
             $stmt->execute();
             
-            // Pobierz wynik zapytania
             $result = $stmt->get_result()->fetch_assoc();
             
             if ($result) {
-                // Przetwórz dane na strukturę danych wysyłki zgodną z wymaganiami Allegro
                 $shippingData = [
                     'sender' => [
                         'name' => 'Artur Życiński',

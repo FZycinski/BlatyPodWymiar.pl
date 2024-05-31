@@ -21,8 +21,14 @@ require_once 'config/DatabaseConnection.php';
 require_once 'models/ShippingModel.php';
 require_once 'controllers/ShippingController.php';
 
-$mysqli = DatabaseConnection::getConnection(); // Obiekt połączenia z bazą danych
-$model = new ShippingModel($mysqli); // Przekazanie obiektu połączenia do modelu
+$mysqli = DatabaseConnection::getConnection();
+if ($mysqli) {
+    echo "Połączenie z bazą danych nawiązane.<br>";
+} else {
+    echo "Błąd połączenia z bazą danych.<br>";
+}
+$model = new ShippingModel($mysqli);
 $controller = new ShippingController($model);
 $controller->main();
+
 ?>

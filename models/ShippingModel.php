@@ -3,8 +3,14 @@ class ShippingModel {
     private $mysqli;
 
     public function __construct($mysqli) {
+        if ($mysqli) {
+            echo "Obiekt mysqli przekazany do ShippingModel.<br>";
+        } else {
+            echo "Brak obiektu mysqli w konstruktorze ShippingModel.<br>";
+        }
         $this->mysqli = $mysqli;
     }
+    
 
     public function getShippingData($orderId) {
         // Przygotuj zapytanie SQL do pobrania danych klienta

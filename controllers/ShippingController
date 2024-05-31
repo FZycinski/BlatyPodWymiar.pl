@@ -3,7 +3,7 @@ class ShippingController {
     private $model;
 
     public function __construct($model) {
-        $this->model = $model;
+        $this->model = new ShippingModel($mysqli);
     }
 
     public function createShippingLabel($accessToken, $shippingData) {

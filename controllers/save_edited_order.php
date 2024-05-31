@@ -36,6 +36,7 @@ $is_milled = isset($_POST['is_milled']) ? 1 : 0;
 $source = $_POST['source'];
 $order_deadline = $_POST['order_deadline'];
 $comments = $_POST['comments'];
+$delivery_method_id = $_POST['delivery_method_id'];
 
 $phone_number_without_prefix = str_replace("+48", "", $delivery_address_phoneNumber);
 
@@ -46,12 +47,12 @@ foreach ($item_names as $item) {
     $kind_of_wood = $parts[0];
 }
 
-$mysqli->query("INSERT INTO orders (kind_of_wood, dimensions, is_varnished, is_oiled, is_milled, source, order_deadline, comments, order_status, phone_number, price, update_datetime, create_datetime) VALUES ('$kind_of_wood', '$dimensions', '$is_varnished', '$is_oiled', '$is_milled', '$source', '$order_deadline', '$comments', '0', '$phone_number_without_prefix', '$order_paid_amount', NOW(), NOW())");
+$mysqli->query("INSERT INTO orders (kind_of_wood, dimensions, is_varnished, is_oiled, is_milled, source, order_deadline, comments, order_status, phone_number, price, update_datetime, create_datetime) VALUES ('$kind_of_wood', '$dimensions', '$is_varnished', '$is_oiled', '$is_milled', '$source', '$order_deadline', '$comments', '0', '$phone_number_without_prefix', '$order_paid_amount', NOW(), NOW())", $delivery_method_id);
 
 $order_id = $mysqli->insert_id;
 
 $stmt = $mysqli->prepare("INSERT INTO additional_order_data 
-    (access_token, order_id, order_status, order_payment_type, order_paid_amount, buyer_email, buyer_login, delivery_address_firstName, delivery_address_lastName, delivery_address_phoneNumber, delivery_address_street, delivery_address_city, delivery_address_zipCode, delivery_method_name, delivery_cost_amount, delivery_time_to, message_to_seller, item_id, item_name, item_quantity, item_price, invoice_address_street, invoice_address_zipCode, invoice_address_city, invoice_company_name, invoice_company_taxId) 
+    (access_token, order_id, order_status, order_payment_type, order_paid_amount, buyer_email, buyer_login, delivery_address_firstName, delivery_address_lastName, delivery_address_phoneNumber, delivery_address_street, delivery_address_city, delivery_address_zipCode, delivery_method_name, delivery_cost_amount, delivery_time_to, message_to_seller, item_id, item_name, item_quantity, item_price, invoice_address_street, invoice_address_zipCode, invoice_address_city, invoice_company_name, invoice_company_taxId, delivery_method_id) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 $stmt->bind_param(
@@ -81,7 +82,8 @@ $stmt->bind_param(
     $invoice_address_zipCode,
     $invoice_address_city,
     $invoice_company_name,
-    $invoice_company_taxId
+    $invoice_company_taxId,
+    $delivery_method_id
 );
 
 $stmt->execute();

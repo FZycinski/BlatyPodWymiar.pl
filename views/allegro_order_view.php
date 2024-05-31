@@ -216,6 +216,7 @@ function fetchOrders($access_token)
                 echo '<input type="hidden" name="invoice_address_city" value="' . $form['invoice']['address']['city'] . '">';
                 echo '<input type="hidden" name="invoice_company_name" value="' . $form['invoice']['address']['company']['name'] . '">';
                 echo '<input type="hidden" name="invoice_company_taxId" value="' . $form['invoice']['address']['company']['taxId'] . '">';
+                echo '<input type="hidden" name="delivery_method_id" value="' . $form['delivery']['method']['id']. '">';
                 echo '<button type="submit" name="create_invoice">Wygeneruj fakturę</button>';
                 echo '</form>';
             }

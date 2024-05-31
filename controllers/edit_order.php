@@ -39,6 +39,7 @@
         $item_prices = $_POST['item_prices'];
         $item_currencies = $_POST['item_currencies'];
         $payment_status = $_POST['payment_status'];
+        $delivery_method_id = $_POST['delivery_method_id'];
     ?>
             <style>
         body {
@@ -134,6 +135,7 @@
             <input type="hidden" name="order_status" value="0">
             <input type="hidden" name="source" value="Allegro">
             Termin wykonania: <input type="date" name="order_deadline" value="<?php echo date('Y-m-d', strtotime('+13 days')); ?>"><br>
+            <input type="hidden" name="delivery_method_id" value="<?php echo $$delivery_method_id; ?>"><br>
             Komentarz: <textarea name="comments"></textarea><br>
             <input type="submit" value="Wrzuć zamówienie do tabeli">
         </form>

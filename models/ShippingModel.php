@@ -38,7 +38,7 @@ class ShippingModel {
                     'receiver' => [
                         'name' => $result['delivery_address_firstName'] . ' ' . $result['delivery_address_lastName'],
                         'street' => $result['delivery_address_street'],
-                        'streetNumber' => $result['delivery_address_streetNumber'], // Zakładam, że ta kolumna istnieje
+                        'streetNumber' => ' ',
                         'postalCode' => $result['delivery_address_zipCode'],
                         'city' => $result['delivery_address_city'],
                         'state' => 'AL',
@@ -49,7 +49,7 @@ class ShippingModel {
                     'pickup' => [
                         'name' => $result['delivery_address_firstName'] . ' ' . $result['delivery_address_lastName'],
                         'street' => $result['delivery_address_street'],
-                        'streetNumber' => $result['delivery_address_streetNumber'], // Zakładam, że ta kolumna istnieje
+                        'streetNumber' => ' ',
                         'postalCode' => $result['delivery_address_zipCode'],
                         'city' => $result['delivery_address_city'],
                         'state' => 'AL',

@@ -42,7 +42,7 @@ class ShippingController {
 
             if ($shippingData) {
                 $labelResponse = $this->createShippingLabel($accessToken, $shippingData);
-                include('views/shipping_view.php');
+                include('../views/shipping_view.php');
             } else {
                 echo "No shipping data found for order ID: $orderId";
             }

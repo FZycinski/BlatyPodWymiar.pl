@@ -47,7 +47,7 @@ foreach ($item_names as $item) {
     $kind_of_wood = $parts[0];
 }
 
-$mysqli->query("INSERT INTO orders (kind_of_wood, dimensions, is_varnished, is_oiled, is_milled, source, order_deadline, comments, order_status, phone_number, price, update_datetime, create_datetime) VALUES ('$kind_of_wood', '$dimensions', '$is_varnished', '$is_oiled', '$is_milled', '$source', '$order_deadline', '$comments', '0', '$phone_number_without_prefix', '$order_paid_amount', NOW(), NOW())", $delivery_method_id);
+$mysqli->query("INSERT INTO orders (kind_of_wood, dimensions, is_varnished, is_oiled, is_milled, source, order_deadline, comments, order_status, phone_number, price, update_datetime, create_datetime) VALUES ('$kind_of_wood', '$dimensions', '$is_varnished', '$is_oiled', '$is_milled', '$source', '$order_deadline', '$comments', '0', '$phone_number_without_prefix', '$order_paid_amount', NOW(), NOW())");
 
 $order_id = $mysqli->insert_id;
 

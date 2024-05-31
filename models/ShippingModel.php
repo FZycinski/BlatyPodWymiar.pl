@@ -23,6 +23,9 @@ class ShippingModel {
             
             if ($result) {
                 $shippingData = [
+                    'input' => [
+                        'deliveryMethodId' => '' //pobrane z https://api.{environment}/shipment-management/delivery-services
+                    ],
                     'sender' => [
                         'name' => 'Artur Życiński',
                         'company' => 'Dekor-Stone Artur Życiński',
@@ -38,7 +41,7 @@ class ShippingModel {
                     'receiver' => [
                         'name' => $result['delivery_address_firstName'] . ' ' . $result['delivery_address_lastName'],
                         'street' => $result['delivery_address_street'],
-                        'streetNumber' => ' ',
+                        'streetNumber' => '1',
                         'postalCode' => $result['delivery_address_zipCode'],
                         'city' => $result['delivery_address_city'],
                         'state' => 'AL',
@@ -47,22 +50,22 @@ class ShippingModel {
                         'phone' => $result['delivery_address_phoneNumber'],
                     ],
                     'pickup' => [
-                        'name' => $result['delivery_address_firstName'] . ' ' . $result['delivery_address_lastName'],
-                        'street' => $result['delivery_address_street'],
-                        'streetNumber' => ' ',
-                        'postalCode' => $result['delivery_address_zipCode'],
-                        'city' => $result['delivery_address_city'],
+                        'name' => 'Artur Życiński',
+                        'company' => 'Dekor-Stone Artur Życiński',
+                        'street' => 'Słowackiego',
+                        'streetNumber' => '43',
+                        'postalCode' => '38-500',
+                        'city' => 'Sanok',
                         'state' => 'AL',
                         'countryCode' => 'PL',
-                        'email' => $result['buyer_email'],
-                        'phone' => $result['delivery_address_phoneNumber'],
+                        'email' => 'artur.zycinski.dekor.stone@gmail.com',
+                        'phone' => '535026224',
                     ],
                     'referenceNumber' => $result['order_id'],
-                    'description' => $result['item_name'], 
+                    'description' => 'Blaty drewniane', 
                     'packages' => [
                         [
-                            'waybill' => 'string',
-                            'type' => 'DOX',
+                            'type' => 'PACKAGE',
                             'length' => [
                                 'value' => 12,
                                 'unit' => 'CENTIMETER'
@@ -91,17 +94,8 @@ class ShippingModel {
                     //     'ownerName' => 'Jan Kowalski',
                     //     'iban' => 'PL48109024022441789739167589'
                     // ],
-                    'createdDate' => date("Y-m-d H:i:s"),
-                    'canceledDate' => date("Y-m-d H:i:s", strtotime("+2 weeks")),
-                    'carrier' => 'string',
+
                     'labelFormat' => 'ZPL',
-                    'additionalServices' => [
-                        'ADDITIONAL_HANDLING'
-                    ],
-                    'additionalProperties' => [
-                        'property1' => 'string',
-                        'property2' => 'string'
-                    ]
                 ];
                 
                 return $shippingData;

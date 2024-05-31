@@ -2,7 +2,7 @@
 class ShippingController {
     private $model;
 
-    public function __construct($model) {
+    public function __construct($mysqli) {
         $this->model = new ShippingModel($mysqli);
     }
 

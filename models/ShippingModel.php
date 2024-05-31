@@ -84,12 +84,12 @@ class ShippingModel {
                         'amount' => $result['order_paid_amount'],
                         'currency' => 'PLN'
                     ],
-                    'cashOnDelivery' => [
-                        'amount' => '2.50',
-                        'currency' => 'PLN',
-                        'ownerName' => 'Jan Kowalski',
-                        'iban' => 'PL48109024022441789739167589'
-                    ],
+                    // 'cashOnDelivery' => [
+                    //     'amount' => '',
+                    //     'currency' => 'PLN',
+                    //     'ownerName' => 'Jan Kowalski',
+                    //     'iban' => 'PL48109024022441789739167589'
+                    // ],
                     'createdDate' => '2023-05-29T12:34:56Z',
                     'canceledDate' => '2023-06-29T12:34:56Z',
                     'carrier' => 'string',

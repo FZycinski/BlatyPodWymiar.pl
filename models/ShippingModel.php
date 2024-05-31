@@ -91,8 +91,8 @@ class ShippingModel {
                     //     'ownerName' => 'Jan Kowalski',
                     //     'iban' => 'PL48109024022441789739167589'
                     // ],
-                    'createdDate' => '2023-05-29T12:34:56Z',
-                    'canceledDate' => '2023-06-29T12:34:56Z',
+                    'createdDate' => date("Y-m-d H:i:s"),
+                    'canceledDate' => date("Y-m-d H:i:s", strtotime("+2 weeks")),
                     'carrier' => 'string',
                     'labelFormat' => 'ZPL',
                     'additionalServices' => [

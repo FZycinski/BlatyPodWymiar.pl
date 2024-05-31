@@ -22,7 +22,6 @@ require_once 'models/ShippingModel.php';
 require_once 'controllers/ShippingController.php';
 
 $mysqli = DatabaseConnection::getConnection();
-$model = new ShippingModel($mysqli);
-$controller = new ShippingController($model);
+$controller = new ShippingController($mysqli);
 $controller->main();
 ?>

@@ -11,7 +11,7 @@ class ShippingController {
     }
 
     public function createShippingLabel($accessToken, $shippingData) {
-        $url = "https://api.allegro.pl/parcel-management/parcel-create-commands";
+        $url = "https://api.allegro.pl/shipment-management/shipments/create-commands";
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);

@@ -106,12 +106,10 @@ class ShippingModel {
                 
                 return $shippingData;
             } else {
-                // Brak wyników - obsłuż ten przypadek w odpowiedni sposób
                 echo "Brak wyników dla podanego order_id: " . $orderId;
                 return null;
             }
         } else {
-            // Obsłuż błąd przygotowania zapytania
             echo "Błąd przygotowania zapytania: " . $this->mysqli->error;
             return null;
         }

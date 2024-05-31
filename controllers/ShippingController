@@ -2,8 +2,8 @@
 class ShippingController {
     private $model;
 
-    public function __construct($mysqli) {
-        $this->model = new ShippingModel($mysqli);
+    public function __construct($model) {
+        $this->model = $model;
     }
 
     public function createShippingLabel($accessToken, $shippingData) {

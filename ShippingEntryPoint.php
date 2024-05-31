@@ -13,7 +13,7 @@ if (!isset($_SESSION['user_id'])) {
 $config = include('config/api_config.php');
 define('CLIENT_ID', $config['client_id']);
 define('CLIENT_SECRET', $config['client_secret']);
-define('REDIRECT_URI', 'https://test.blatypodwymiar.pl/views/ShippingController.php');
+define('REDIRECT_URI', 'https://test.blatypodwymiar.pl/controllers/ShippingController.php');
 define('AUTH_URL', 'https://allegro.pl/auth/oauth/authorize');
 define('TOKEN_URL', 'https://allegro.pl/auth/oauth/token');
 

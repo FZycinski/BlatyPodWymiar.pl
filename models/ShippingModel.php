@@ -116,18 +116,4 @@ class ShippingModel {
         }
     }
 }
-
-// Włącz wyświetlanie błędów PHP
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-require_once '../config/DatabaseConnection.php';
-$mysqli = DatabaseConnection::getConnection();
-$shippingModel = new ShippingModel($mysqli);
-$orderId = 140; // Przykładowe ID zamówienia
-$shippingData = $shippingModel->getShippingData($orderId);
-
-echo '<pre>';
-print_r($shippingData);
-echo '</pre>';
 ?>

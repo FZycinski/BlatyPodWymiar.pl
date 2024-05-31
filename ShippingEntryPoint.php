@@ -17,7 +17,7 @@ define('REDIRECT_URI', $config['redirect_uri']);
 define('AUTH_URL', 'https://allegro.pl/auth/oauth/authorize');
 define('TOKEN_URL', 'https://allegro.pl/auth/oauth/token');
 
-require_once 'config/DatabaseConnection.php';
+require_once '/config/DatabaseConnection.php';
 require_once 'models/ShippingModel.php';
 require_once 'controllers/ShippingController.php';
 

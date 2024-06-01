@@ -11,7 +11,6 @@ class ShippingModel {
         $this->mysqli = $mysqli;
     }
     
-
     public function getShippingData($orderId) {
         $query = "SELECT * FROM additional_order_data WHERE order_id = ?";
         
@@ -26,6 +25,7 @@ class ShippingModel {
                     'input' => [
                         'deliveryMethodId' => $result['delivery_method_id'],
                         'sender' => [
+                            'name' => 'Artur Życiński',
                             'company' => 'Dekor-Stone Artur Życiński',
                             'street' => 'Słowackiego',
                             'streetNumber' => '43',
@@ -52,7 +52,6 @@ class ShippingModel {
                             'streetNumber' => '43',
                             'postalCode' => '38-500',
                             'city' => 'Sanok',
-                            'state' => 'AL',
                             'countryCode' => 'PL',
                             'email' => 'artur.zycinski.dekor.stone@gmail.com',
                             'phone' => '535026224',
@@ -84,13 +83,6 @@ class ShippingModel {
                             'amount' => $result['order_paid_amount'],
                             'currency' => 'PLN'
                         ],
-                        // 'cashOnDelivery' => [
-                        //     'amount' => '',
-                        //     'currency' => 'PLN',
-                        //     'ownerName' => 'Jan Kowalski',
-                        //     'iban' => 'PL48109024022441789739167589'
-                        // ],
-
                         'labelFormat' => 'PDF',
                     ]
                 ];

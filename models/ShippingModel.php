@@ -24,7 +24,7 @@ class ShippingModel {
             if ($result) {
                 $shippingData = [
                     'input' => [
-                        'deliveryMethodId' => $result['shipping_method_id']
+                        'deliveryMethodId' => $result['delivery_method_id']
                     ],
                     'sender' => [
                         'name' => 'Artur Życiński',

@@ -174,6 +174,7 @@ function fetchOrders($access_token)
             echo '<input type="hidden" name="access_token" value="' . $access_token . '">';
             echo '<input type="hidden" name="access_token" value="' . $form['access_token'] . '">';
             echo '<input type="hidden" name="order_id" value="' . $form['id'] . '">';
+            echo '<input type="hidden" name="delivery_method_id" value="' . $form['delivery']['method']['id'] . '">';
             foreach ($form['lineItems'] as $item) {
                 echo '<input type="hidden" name="item_ids[]" value="' . $item['id'] . '">';
                 echo '<input type="hidden" name="item_names[]" value="' . interpretOfferName($item['offer']['name']) . '">';

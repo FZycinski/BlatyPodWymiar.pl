@@ -100,9 +100,21 @@
         }
     </style>
         <form method="post" action="save_edited_order.php">
-            <input type="hidden" name="access_token" value="<?php echo $access_token; ?>">
-            <input type="hidden" name="order_id" value="<?php echo $order_id; ?>">
-            <input type="hidden" name="order_status" value="<?php echo $order_status; ?>"><br>
+        <input type="hidden" name="access_token" value="<?php echo $access_token; ?>">
+    <input type="hidden" name="order_id" value="<?php echo $order_id; ?>">
+    <input type="hidden" name="order_status" value="<?php echo $order_status; ?>">
+    <input type="hidden" name="additional_order_id" value="<?php echo $additional_order_id; ?>">
+    <input type="hidden" name="buyer_login" value="<?php echo $buyer_login; ?>">
+    <input type="hidden" name="delivery_address_firstName" value="<?php echo $delivery_address_firstName; ?>">
+    <input type="hidden" name="delivery_address_lastName" value="<?php echo $delivery_address_lastName; ?>">
+    <input type="hidden" name="delivery_address_street" value="<?php echo $delivery_address_street; ?>">
+    <input type="hidden" name="delivery_address_city" value="<?php echo $delivery_address_city; ?>">
+    <input type="hidden" name="delivery_address_zipCode" value="<?php echo $delivery_address_zipCode; ?>">
+    <input type="hidden" name="delivery_method_name" value="<?php echo $delivery_method_name; ?>">
+    <input type="hidden" name="delivery_cost_amount" value="<?php echo $delivery_cost_amount; ?>">
+    <input type="hidden" name="delivery_time_to" value="<?php echo $delivery_time_to; ?>">
+    <input type="hidden" name="item_id" value="<?php echo $item_id; ?>">
+    <input type="hidden" name="delivery_method_id" value="<?php echo $delivery_method_id; ?>">
             <?php if ($order_payment_type != 'ONLINE') { ?>
                 Typ płatności: <input type="text" name="order_payment_type" value="<?php echo $order_payment_type; ?>"><br>
             <?php } ?>
@@ -135,7 +147,6 @@
             <input type="hidden" name="order_status" value="0">
             <input type="hidden" name="source" value="Allegro">
             Termin wykonania: <input type="date" name="order_deadline" value="<?php echo date('Y-m-d', strtotime('+13 days')); ?>"><br>
-            <input type="hidden" name="delivery_method_id" value="<?php echo $$delivery_method_id; ?>"><br>
             Komentarz: <textarea name="comments"></textarea><br>
             <input type="submit" value="Wrzuć zamówienie do tabeli">
         </form>

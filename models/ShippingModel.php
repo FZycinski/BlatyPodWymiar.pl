@@ -24,7 +24,7 @@ class ShippingModel {
             if ($result) {
                 $shippingData = [
                     'input' => [
-                        'deliveryMethodId' => '' //pobrane z https://api.{environment}/shipment-management/delivery-services
+                        'deliveryMethodId' => $result['shipping_method_id']
                     ],
                     'sender' => [
                         'name' => 'Artur Życiński',

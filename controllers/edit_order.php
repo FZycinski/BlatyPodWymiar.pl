@@ -114,7 +114,7 @@
     <input type="hidden" name="delivery_cost_amount" value="<?php echo $delivery_cost_amount; ?>">
     <input type="hidden" name="delivery_time_to" value="<?php echo $delivery_time_to; ?>">
     <input type="hidden" name="item_id" value="<?php echo $item_id; ?>">
-    <input type="hidden" name="delivery_method_id" value="<?php echo $delivery_method_id; ?>">
+    <input type="text" name="delivery_method_id" value="<?php echo $delivery_method_id; ?>">
             <?php if ($order_payment_type != 'ONLINE') { ?>
                 Typ płatności: <input type="text" name="order_payment_type" value="<?php echo $order_payment_type; ?>"><br>
             <?php } ?>

@@ -27,13 +27,11 @@ class ShippingModel {
                         'deliveryMethodId' => $result['delivery_method_id']
                     ],
                     'sender' => [
-                        'name' => 'Artur Życiński',
                         'company' => 'Dekor-Stone Artur Życiński',
                         'street' => 'Słowackiego',
                         'streetNumber' => '43',
                         'postalCode' => '38-500',
                         'city' => 'Sanok',
-                        'state' => 'AL',
                         'countryCode' => 'PL',
                         'email' => 'artur.zycinski.dekor.stone@gmail.com',
                         'phone' => '535026224',

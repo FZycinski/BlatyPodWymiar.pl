@@ -134,7 +134,6 @@ function fetchOrders($access_token)
         echo '<tr>';
         echo '<th>Status zamówienia: '. translateStatus($form['fulfillment']['status']) .'</th>';
         echo '<th>Status płatności: ' . translateFormStatus($form['status']) . '</th>';
-        echo '<th>ID wysylki: ' . $form['delivery']['method']['id'] . '</th>';
         echo '</tr>';
 
         foreach ($form['lineItems'] as $item) {

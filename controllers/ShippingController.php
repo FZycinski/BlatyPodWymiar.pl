@@ -26,8 +26,10 @@ class ShippingController {
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        if ($httpCode !== 201) {
-            exit("Failed to create shipping label. HTTP Code: $httpCode. Response: $response");
+        if ($httpCode == 200) {
+            echo "Shipment created successfully: " . $response;
+        } else {
+            echo "Failed to create shipping label. HTTP Code: " . $httpCode . ". Response: " . $response;
         }
 
         return json_decode($response, true);

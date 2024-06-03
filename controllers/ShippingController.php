@@ -78,6 +78,37 @@ class ShippingController {
         ];
     }
 
+    public function getShipmentLabel($accessToken, $shipmentIds, $pageSize = "A4", $cutLine = false) {
+        $url = "https://api.allegro.pl/shipment-management/label";
+        $data = [
+            'shipmentIds' => $shipmentIds,
+            'pageSize' => $pageSize,
+            'cutLine' => $cutLine
+        ];
+        
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            "Authorization: Bearer $accessToken",
+            "Content-Type: application/vnd.allegro.public.v1+json",
+            "Accept: application/vnd.allegro.public.v1+json"
+        ));
+
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($httpCode == 200) {
+            echo "Shipment label fetched successfully: " . $response;
+        } else {
+            echo "Failed to fetch shipment label. HTTP Code: " . $httpCode . ". Response: " . $response;
+        }
+
+        return json_decode($response, true);
+    }
+
     public function main() {
         if (isset($_GET["code"])) {
             $accessToken = $this->getAccessToken($_GET["code"]);
@@ -92,7 +123,15 @@ class ShippingController {
                 if (isset($labelResponse['commandId'])) {
                     $commandId = $labelResponse['commandId'];
                     $statusResponse = $this->checkShipmentStatus($accessToken, $commandId);
-                    include('views/shipping_view.php');
+                    print_r($statusResponse);
+
+                    if (isset($statusResponse['shipmentId'])) {
+                        $shipmentId = $statusResponse['shipmentId'];
+                        $label = $this->getShipmentLabel($accessToken, [$shipmentId]);
+                        include('views/shipping_view.php');
+                    } else {
+                        echo "Failed to retrieve shipmentId from status response.";
+                    }
                 } else {
                     echo "Failed to retrieve commandId from label response.";
                 }

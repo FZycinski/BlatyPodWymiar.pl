@@ -6,6 +6,8 @@
     <title>Shipping Data</title>
 </head>
 <?php
+// views/shipping_view.php
+
 echo "<h1>Shipment Label Created</h1>";
 
 echo "<h2>Label Response:</h2>";
@@ -21,7 +23,17 @@ if (isset($statusResponse)) {
     echo "Failed to retrieve shipment status.";
 }
 echo "</pre>";
+
+echo "<h2>Shipment Label:</h2>";
+echo "<pre>";
+if (isset($label)) {
+    echo "<a href='" . $label['url'] . "' target='_blank'>Download Label</a>";
+} else {
+    echo "Failed to retrieve shipment label.";
+}
+echo "</pre>";
 ?>
+
 
 </body>
 </html>

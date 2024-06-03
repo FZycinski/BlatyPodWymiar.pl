@@ -27,7 +27,7 @@ class ShippingController {
         curl_close($ch);
 
         if ($httpCode == 200) {
-            echo "Shipment created successfully: " . $response;
+            exit;
         } else {
             echo "Failed to create shipping label. HTTP Code: " . $httpCode . ". Response: " . $response;
         }
@@ -102,7 +102,10 @@ class ShippingController {
 
         if ($httpCode == 200) {
             echo "Shipment label fetched successfully: " . $response;
-        } else {
+        } else if ($httpCode == 204){
+            echo "Failed to fetch shipment label. HTTP Code: " . $httpCode . ". Response: " . $response;
+        }
+        else {
             echo "Failed to fetch shipment label. HTTP Code: " . $httpCode . ". Response: " . $response;
         }
 

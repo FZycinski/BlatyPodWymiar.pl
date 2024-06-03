@@ -121,7 +121,7 @@ class ShippingController {
 
                     if (isset($statusResponse['shipmentId'])) {
                         $shipmentId = $statusResponse['shipmentId'];
-                        $label = $this->getShipmentLabel($accessToken, [$shipmentId]);
+                        $labelResponse = $this->getShipmentLabel($accessToken, [$shipmentId]);
                         include('views/shipping_view.php');
                     } else {
                         echo "Failed to retrieve shipmentId from status response.";

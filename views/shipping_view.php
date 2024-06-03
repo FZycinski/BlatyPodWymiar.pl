@@ -17,11 +17,9 @@ echo "</pre>";
 
 echo "<h2>Shipment Status:</h2>";
 echo "<pre>";
-if (isset($statusResponse)) {
-    exit;
-} else {
+if (!isset($statusResponse)) {
     echo "Failed to retrieve shipment status.";
-}
+} 
 echo "</pre>";
 
 echo "<h2>Shipment Label:</h2>";

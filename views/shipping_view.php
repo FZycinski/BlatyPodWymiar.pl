@@ -22,6 +22,7 @@ if (!isset($statusResponse)) {
 } 
 echo "</pre>";
 
+
 echo "<h2>Shipment Label:</h2>";
 echo "<pre>";
 if (isset($labelResponse)) {

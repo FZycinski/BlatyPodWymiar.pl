@@ -62,19 +62,19 @@ class ShippingModel {
                             [
                                 'type' => 'PACKAGE',
                                 'length' => [
-                                    'value' => 12,
+                                    'value' => $result['package_length'],
                                     'unit' => 'CENTIMETER'
                                 ],
                                 'width' => [
-                                    'value' => 12,
+                                    'value' => $result['package_width'],
                                     'unit' => 'CENTIMETER'
                                 ],
                                 'height' => [
-                                    'value' => 12,
+                                    'value' => $result['package_height'],
                                     'unit' => 'CENTIMETER'
                                 ],
                                 'weight' => [
-                                    'value' => 12.45,
+                                    'value' => $result['package_weight'],
                                     'unit' => 'KILOGRAMS'
                                 ]
                             ]

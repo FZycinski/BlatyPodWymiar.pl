@@ -59,8 +59,7 @@ $stmt = $mysqli->prepare("INSERT INTO additional_order_data
     (access_token, order_id, order_status, order_payment_type, order_paid_amount, buyer_email, buyer_login, delivery_address_firstName, delivery_address_lastName, delivery_address_phoneNumber, delivery_address_street, delivery_address_city, delivery_address_zipCode, delivery_method_name, delivery_cost_amount, delivery_time_to, message_to_seller, item_id, item_name, item_quantity, item_price, invoice_address_street, invoice_address_zipCode, invoice_address_city, invoice_company_name, invoice_company_taxId, delivery_method_id, package_length, package_width, package_height, package_weight) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-$stmt->bind_param(
-    "sissdssssssssssssssssssssssdddd",
+$params = array(
     $access_token,
     $order_id,
     $order_status,
@@ -94,7 +93,8 @@ $stmt->bind_param(
     $package_weight
 );
 
-$stmt->execute();
+$stmt->execute($params);
+
 $stmt->close();
 
 $mysqli->close();

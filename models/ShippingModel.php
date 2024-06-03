@@ -3,11 +3,9 @@ class ShippingModel {
     private $mysqli;
 
     public function __construct($mysqli) {
-        if ($mysqli) {
-            echo "Obiekt mysqli przekazany do ShippingModel.<br>";
-        } else {
+        if (!$mysqli) {
             echo "Brak obiektu mysqli w konstruktorze ShippingModel.<br>";
-        }
+        } 
         $this->mysqli = $mysqli;
     }
     

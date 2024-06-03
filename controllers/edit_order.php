@@ -104,21 +104,24 @@
                 margin: 20px 0;
             }
             .package-form {
-                width: 100%;
+                width: 800px;
             }
             .form-row {
                 width: 25%;
                 margin-bottom: 20px;
-                display: flex;
-                align-items: center;
             }
 
             .form-row label {
                 display: block;
             }
 
+            .form-row {
+                display: flex;
+                align-items: center;
+            }
+
             .form-row input[type="text"] {
-                width: 20%;
+                width: 50px;
             }
         </style>
         <form method="post" action="save_edited_order.php">

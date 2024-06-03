@@ -26,13 +26,14 @@ echo "</pre>";
 
 echo "<h2>Shipment Label:</h2>";
 echo "<pre>";
-if (isset($label)) {
+if (isset($label['url'])) {
     echo "<a href='" . $label['url'] . "' target='_blank'>Download Label</a>";
 } else {
-    echo "Failed to retrieve shipment label.";
+    echo "Failed to retrieve shipment label URL.";
 }
 echo "</pre>";
 ?>
+
 
 
 

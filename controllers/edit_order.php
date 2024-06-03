@@ -100,11 +100,18 @@
             }
 
             .form-row {
+                width: 45%;
                 margin-bottom: 20px;
             }
 
             .form-row label {
-                display: inline-block;
+                display: block;
+            }
+
+            .form-row {
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
                 width: 40px;
             }
 

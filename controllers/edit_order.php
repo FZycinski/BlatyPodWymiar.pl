@@ -103,26 +103,23 @@
                 border-top: 1px solid #ccc;
                 margin: 20px 0;
             }
-            .package-form {
-                width: 800px;
-            }
-            .form-row {
-                width: 25%;
-                margin-bottom: 20px;
-            }
+        /* Style dla całego formularza */
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
 
-            .form-row label {
-                display: block;
-            }
+        /* Style dla poszczególnych pól */
+        .form-row {
+            width: 45%; /* Ustawia szerokość na 45% szerokości kontenera */
+            margin-bottom: 20px;
+        }
 
-            .form-row {
-                display: flex;
-                align-items: center;
-            }
-
-            .form-row input[type="text"] {
-                width: 50px;
-            }
+        /* Style dla etykiet */
+        .form-row label {
+            display: block; /* Każda etykieta w nowej linii */
+        }
         </style>
         <form method="post" action="save_edited_order.php">
             <input type="hidden" name="access_token" value="<?php echo $access_token; ?>">

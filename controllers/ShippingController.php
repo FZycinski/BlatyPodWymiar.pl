@@ -35,6 +35,29 @@ class ShippingController {
         return json_decode($response, true);
     }
 
+    public function checkShipmentStatus($accessToken, $commandId) {
+        $url = "https://api.allegro.pl/shipment-management/shipments/create-commands/$commandId";
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            "Authorization: Bearer $accessToken",
+            "Content-Type: application/vnd.allegro.public.v1+json",
+            "Accept: application/vnd.allegro.public.v1+json"
+        ));
+
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($httpCode == 200) {
+            return json_decode($response, true);
+        } else {
+            echo "Failed to check shipment status. HTTP Code: " . $httpCode . ". Response: " . $response;
+            return null;
+        }
+    }
+
     public function main() {
         if (isset($_GET["code"])) {
             $accessToken = $this->getAccessToken($_GET["code"]);
@@ -45,8 +68,14 @@ class ShippingController {
             if ($shippingData) {
                 $labelResponse = $this->createShippingLabel($accessToken, $shippingData);
                 print_r($labelResponse);
-                include('views/shipping_view.php');
 
+                if (isset($labelResponse['commandId'])) {
+                    $commandId = $labelResponse['commandId'];
+                    $statusResponse = $this->checkShipmentStatus($accessToken, $commandId);
+                    include('views/shipping_view.php');
+                } else {
+                    echo "Failed to retrieve commandId from label response.";
+                }
             } else {
                 echo "No shipping data found for order ID: $orderId";
             }

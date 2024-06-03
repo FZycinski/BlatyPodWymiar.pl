@@ -15,8 +15,13 @@ echo "</pre>";
 
 echo "<h2>Shipment Status:</h2>";
 echo "<pre>";
-print_r($statusResponse);
+if (isset($statusResponse)) {
+    print_r($statusResponse);
+} else {
+    echo "Failed to retrieve shipment status.";
+}
 echo "</pre>";
 ?>
+
 </body>
 </html>

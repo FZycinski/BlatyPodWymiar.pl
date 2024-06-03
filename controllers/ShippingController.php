@@ -61,7 +61,7 @@ class ShippingController {
                 if ($status != "IN_PROGRESS") {
                     break;
                 }
-                sleep(5); // Wait for 5 seconds before checking again
+                sleep(5);
             } else {
                 echo "Failed to check shipment status. HTTP Code: " . $httpCode . ". Response: " . $response;
                 return null;

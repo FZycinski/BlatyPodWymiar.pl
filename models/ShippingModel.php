@@ -38,7 +38,7 @@ class ShippingModel {
                         'receiver' => [
                             'name' => $result['delivery_address_firstName'] . ' ' . $result['delivery_address_lastName'],
                             'street' => $result['delivery_address_street'],
-                            'streetNumber' => '1',
+                            'streetNumber' => ' ',
                             'postalCode' => $result['delivery_address_zipCode'],
                             'city' => $result['delivery_address_city'],
                             'countryCode' => 'PL',

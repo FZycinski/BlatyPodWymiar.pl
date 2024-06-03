@@ -27,11 +27,12 @@ class ShippingController {
         curl_close($ch);
 
         if ($httpCode == 200) {
-            return json_decode($response, true);
+            echo "Shipment created successfully: " . $response;
         } else {
             echo "Failed to create shipping label. HTTP Code: " . $httpCode . ". Response: " . $response;
-            return null;
         }
+
+        return json_decode($response, true);
     }
 
     public function checkShipmentStatus($accessToken, $commandId) {
@@ -59,7 +60,9 @@ class ShippingController {
                 $status = $responseArray['status'];
                 $errors = $responseArray['errors'];
                 $shipmentId = $responseArray['shipmentId'];
-                if ($status != "IN_PROGRESS") break;
+                if ($status != "IN_PROGRESS") {
+                    break;
+                }
                 sleep(5); // Wait for 5 seconds before checking again
             } else {
                 echo "Failed to check shipment status. HTTP Code: " . $httpCode . ". Response: " . $response;
@@ -82,7 +85,7 @@ class ShippingController {
             'pageSize' => $pageSize,
             'cutLine' => $cutLine
         ];
-
+        
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -98,11 +101,12 @@ class ShippingController {
         curl_close($ch);
 
         if ($httpCode == 200) {
-            return json_decode($response, true);
+            echo "Shipment label fetched successfully: " . $response;
         } else {
             echo "Failed to fetch shipment label. HTTP Code: " . $httpCode . ". Response: " . $response;
-            return null;
         }
+
+        return json_decode($response, true);
     }
 
     public function main() {
@@ -114,14 +118,16 @@ class ShippingController {
 
             if ($shippingData) {
                 $labelResponse = $this->createShippingLabel($accessToken, $shippingData);
+                print_r($labelResponse);
 
                 if (isset($labelResponse['commandId'])) {
                     $commandId = $labelResponse['commandId'];
                     $statusResponse = $this->checkShipmentStatus($accessToken, $commandId);
+                    print_r($statusResponse);
 
                     if (isset($statusResponse['shipmentId'])) {
                         $shipmentId = $statusResponse['shipmentId'];
-                        $labelResponse = $this->getShipmentLabel($accessToken, [$shipmentId]);
+                        $label = $this->getShipmentLabel($accessToken, [$shipmentId]);
                         include('views/shipping_view.php');
                     } else {
                         echo "Failed to retrieve shipmentId from status response.";
@@ -167,4 +173,3 @@ class ShippingController {
     }
 }
 ?>
-

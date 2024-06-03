@@ -88,6 +88,11 @@
                 font-size: 16px;
                 transition: background-color 0.3s ease;
             }
+            form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
 
             input[type="submit"]:hover {
                 background-color: #45a049;

@@ -103,25 +103,22 @@
                 border-top: 1px solid #ccc;
                 margin: 20px 0;
             }
-
+            .package-form {
+                width: 100%;
+            }
             .form-row {
-                width: 45%;
+                width: 25%;
                 margin-bottom: 20px;
+                display: flex;
+                align-items: center;
             }
 
             .form-row label {
                 display: block;
             }
 
-            .form-row {
-                margin-bottom: 20px;
-                display: flex;
-                align-items: center;
-                width: 40px;
-            }
-
             .form-row input[type="text"] {
-                width: 50px;
+                width: 20%;
             }
         </style>
         <form method="post" action="save_edited_order.php">
@@ -165,26 +162,26 @@
                 Nazwa firmy (faktura): <input type="text" name="invoice_company_name" value="<?php echo $invoice_company_name; ?>"><br>
                 NIP (faktura): <input type="text" name="invoice_company_taxId" value="<?php echo $invoice_company_taxId; ?>"><br>
             <?php } ?>
-            <hr>
+            <hr><div class="package-form">
             <div class="form-row">
-                <label for="package_length">Długość paczki:</label>
+                <label class="label" for="package_length">Długość paczki:</label>
                 <input type="text" name="package_length" id="package_length">
             </div>
 
             <div class="form-row">
-                <label for="package_width">Szerokość paczki:</label>
+                <label class="label" for="package_width">Szerokość paczki:</label>
                 <input type="text" name="package_width" id="package_width">
             </div>
 
             <div class="form-row">
-                <label for="package_height">Wysokość paczki:</label>
+                <label class="label" for="package_height">Wysokość paczki:</label>
                 <input type="text" name="package_height" id="package_height">
             </div>
 
             <div class="form-row">
-                <label for="package_weight">Waga paczki:</label>
+                <label class="label" for="package_weight">Waga paczki:</label>
                 <input type="text" name="package_weight" id="package_weight">
-            </div>
+            </div></div>
             <hr>
             Wpisz wymiar: <input type="text" name="dimensions"><br>
             Lakierowanie: <input type="checkbox" name="is_varnished"><br>

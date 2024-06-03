@@ -41,86 +41,74 @@
         $payment_status = $_POST['payment_status'];
         $delivery_method_id = $_POST['delivery_method_id'];
     ?>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f5f5f5;
-                margin: 0;
-                padding: 0;
-            }
-
-            .container {
-                max-width: 800px;
-                margin: 20px auto;
-                background-color: #fff;
-                padding: 20px;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            }
-
-            h2 {
-                margin-top: 0;
-            }
-
-            form {
-                max-width: 600px;
-                margin: 0 auto;
-            }
-
-            input[type="text"],
-            textarea {
-                width: 100%;
-                padding: 8px;
-                margin-bottom: 10px;
-                box-sizing: border-box;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-            }
-
-            input[type="submit"] {
-                width: 100%;
-                padding: 10px;
-                background-color: #4CAF50;
-                color: white;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                font-size: 16px;
-                transition: background-color 0.3s ease;
-            }
-            form {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
         }
 
-            input[type="submit"]:hover {
-                background-color: #45a049;
-            }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-            hr {
-                border: none;
-                border-top: 1px solid #ccc;
-                margin: 20px 0;
-            }
-        /* Style dla całego formularza */
+        h2 {
+            margin-top: 0;
+        }
+
         form {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        /* Style dla poszczególnych pól */
-        .form-row {
-            width: 45%; /* Ustawia szerokość na 45% szerokości kontenera */
-            margin-bottom: 20px;
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
 
-        /* Style dla etykiet */
-        .form-row label {
-            display: block; /* Każda etykieta w nowej linii */
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
         }
-        </style>
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 20px 0;
+        }
+        .label {
+            display: block;
+            margin-bottom: 5px;
+            float:left;
+        }
+        .dimensions input[type="text"]{
+            display: inline-block;
+            width: 40px;
+            margin-right: 4%;
+        }
+    </style>
         <form method="post" action="save_edited_order.php">
             <input type="hidden" name="access_token" value="<?php echo $access_token; ?>">
             <input type="hidden" name="order_id" value="<?php echo $order_id; ?>">
@@ -162,25 +150,25 @@
                 Nazwa firmy (faktura): <input type="text" name="invoice_company_name" value="<?php echo $invoice_company_name; ?>"><br>
                 NIP (faktura): <input type="text" name="invoice_company_taxId" value="<?php echo $invoice_company_taxId; ?>"><br>
             <?php } ?>
-            <hr><div class="package-form">
+            <div class="package-form">
             <div class="form-row">
                 <label class="label" for="package_length">Długość paczki:</label>
-                <input type="text" name="package_length" id="package_length">
+                <input type="text" name="package_length" id="package_length" class="dimensions">
             </div>
 
             <div class="form-row">
                 <label class="label" for="package_width">Szerokość paczki:</label>
-                <input type="text" name="package_width" id="package_width">
+                <input type="text" name="package_width" id="package_width" class="dimensions">
             </div>
 
             <div class="form-row">
                 <label class="label" for="package_height">Wysokość paczki:</label>
-                <input type="text" name="package_height" id="package_height">
+                <input type="text" name="package_height" id="package_height" class="dimensions">
             </div>
 
             <div class="form-row">
                 <label class="label" for="package_weight">Waga paczki:</label>
-                <input type="text" name="package_weight" id="package_weight">
+                <input type="text" name="package_weight" id="package_weight" class="dimensions">
             </div></div>
             <hr>
             Wpisz wymiar: <input type="text" name="dimensions"><br>

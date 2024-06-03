@@ -105,11 +105,11 @@
 
             .form-row label {
                 display: inline-block;
-                width: 150px;
+                width: 40px;
             }
 
             .form-row input[type="text"] {
-                width: 200px;
+                width: 50px;
             }
         </style>
         <form method="post" action="save_edited_order.php">

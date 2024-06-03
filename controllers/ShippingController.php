@@ -113,36 +113,44 @@ class ShippingController {
     public function main() {
         if (isset($_GET["code"])) {
             $accessToken = $this->getAccessToken($_GET["code"]);
-            
-            $orderId = 170; 
-            $shippingData = $this->model->getShippingData($orderId);
-
-            if ($shippingData) {
-                $labelResponse = $this->createShippingLabel($accessToken, $shippingData);
-                print_r($labelResponse);
-
-                if (isset($labelResponse['commandId'])) {
-                    $commandId = $labelResponse['commandId'];
-                    $statusResponse = $this->checkShipmentStatus($accessToken, $commandId);
-                    print_r($statusResponse);
-
-                    if (isset($statusResponse['shipmentId'])) {
-                        $shipmentId = $statusResponse['shipmentId'];
-                        $label = $this->getShipmentLabel($accessToken, [$shipmentId]);
-                        include('views/shipping_view.php');
+    
+            if (isset($_POST['order_ids'])) {
+                $orderIds = $_POST['order_ids'];
+    
+                foreach ($orderIds as $orderId) {
+                    $shippingData = $this->model->getShippingData($orderId);
+    
+                    if ($shippingData) {
+                        $labelResponse = $this->createShippingLabel($accessToken, $shippingData);
+                        print_r($labelResponse);
+    
+                        if (isset($labelResponse['commandId'])) {
+                            $commandId = $labelResponse['commandId'];
+                            $statusResponse = $this->checkShipmentStatus($accessToken, $commandId);
+                            print_r($statusResponse);
+    
+                            if (isset($statusResponse['shipmentId'])) {
+                                $shipmentId = $statusResponse['shipmentId'];
+                                $label = $this->getShipmentLabel($accessToken, [$shipmentId]);
+                                include('views/shipping_view.php');
+                            } else {
+                                echo "Failed to retrieve shipmentId from status response.";
+                            }
+                        } else {
+                            echo "Failed to retrieve commandId from label response.";
+                        }
                     } else {
-                        echo "Failed to retrieve shipmentId from status response.";
+                        echo "No shipping data found for order ID: $orderId";
                     }
-                } else {
-                    echo "Failed to retrieve commandId from label response.";
                 }
             } else {
-                echo "No shipping data found for order ID: $orderId";
+                echo "No order IDs provided.";
             }
         } else {
             $this->getAuthorizationCode();
         }
     }
+    
 
     private function getAuthorizationCode() {
         $authorization_redirect_url = AUTH_URL . "?response_type=code&client_id="

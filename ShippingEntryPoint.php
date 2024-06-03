@@ -22,13 +22,26 @@ require_once 'models/ShippingModel.php';
 require_once 'controllers/ShippingController.php';
 
 $mysqli = DatabaseConnection::getConnection();
-if ($mysqli) {
-    echo "Połączenie z bazą danych nawiązane.<br>";
-} else {
-    echo "Błąd połączenia z bazą danych.<br>";
-}
+
 $model = new ShippingModel($mysqli);
 $controller = new ShippingController($model);
 $controller->main();
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Entry Point</title>
+</head>
+<body>
+    <h1>Wprowadź numery zamówień do wysłania</h1>
+    <form action="ShippingEntryPoint.php" method="post">
+        <label for="order_ids">Numery zamówień (oddzielone przecinkami):</label><br>
+        <textarea id="order_ids" name="order_ids" rows="4" cols="50"></textarea><br><br>
+        <input type="submit" value="Wyślij zamówienia">
+    </form>
+</body>
+</html>
+

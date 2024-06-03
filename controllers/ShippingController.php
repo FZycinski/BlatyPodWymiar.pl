@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 class ShippingController {
     private $model;
 
@@ -110,25 +106,23 @@ class ShippingController {
         return json_decode($response, true);
     }
 
-    public function main() {
+    public function main($orderIds = null) {
         if (isset($_GET["code"])) {
             $accessToken = $this->getAccessToken($_GET["code"]);
-    
-            if (isset($_POST['order_ids'])) {
-                $orderIds = $_POST['order_ids'];
-    
+            
+            if ($orderIds) {
                 foreach ($orderIds as $orderId) {
                     $shippingData = $this->model->getShippingData($orderId);
-    
+
                     if ($shippingData) {
                         $labelResponse = $this->createShippingLabel($accessToken, $shippingData);
                         print_r($labelResponse);
-    
+
                         if (isset($labelResponse['commandId'])) {
                             $commandId = $labelResponse['commandId'];
                             $statusResponse = $this->checkShipmentStatus($accessToken, $commandId);
                             print_r($statusResponse);
-    
+
                             if (isset($statusResponse['shipmentId'])) {
                                 $shipmentId = $statusResponse['shipmentId'];
                                 $label = $this->getShipmentLabel($accessToken, [$shipmentId]);
@@ -150,7 +144,6 @@ class ShippingController {
             $this->getAuthorizationCode();
         }
     }
-    
 
     private function getAuthorizationCode() {
         $authorization_redirect_url = AUTH_URL . "?response_type=code&client_id="
@@ -170,15 +163,10 @@ class ShippingController {
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => $content
         ));
-        $tokenResult = curl_exec($ch);
-        $resultCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $response = curl_exec($ch);
         curl_close($ch);
-
-        if ($tokenResult === false || $resultCode !== 200) {
-            exit("Something went wrong $resultCode $tokenResult");
-        }
-
-        return json_decode($tokenResult)->access_token;
+        $json_response = json_decode($response, true);
+        return $json_response['access_token'];
     }
 }
 ?>

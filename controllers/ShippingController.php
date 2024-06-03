@@ -37,25 +37,45 @@ class ShippingController {
 
     public function checkShipmentStatus($accessToken, $commandId) {
         $url = "https://api.allegro.pl/shipment-management/shipments/create-commands/$commandId";
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            "Authorization: Bearer $accessToken",
-            "Content-Type: application/vnd.allegro.public.v1+json",
-            "Accept: application/vnd.allegro.public.v1+json"
-        ));
+        $status = "IN_PROGRESS";
+        $errors = null;
+        $shipmentId = null;
 
-        $response = curl_exec($ch);
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
+        while ($status == "IN_PROGRESS") {
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                "Authorization: Bearer $accessToken",
+                "Content-Type: application/vnd.allegro.public.v1+json",
+                "Accept: application/vnd.allegro.public.v1+json"
+            ));
 
-        if ($httpCode == 200) {
-            return json_decode($response, true);
-        } else {
-            echo "Failed to check shipment status. HTTP Code: " . $httpCode . ". Response: " . $response;
-            return null;
+            $response = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+
+            if ($httpCode == 200) {
+                $responseArray = json_decode($response, true);
+                $status = $responseArray['status'];
+                $errors = $responseArray['errors'];
+                $shipmentId = $responseArray['shipmentId'];
+                if ($status != "IN_PROGRESS") {
+                    break;
+                }
+                sleep(5); // Wait for 5 seconds before checking again
+            } else {
+                echo "Failed to check shipment status. HTTP Code: " . $httpCode . ". Response: " . $response;
+                return null;
+            }
         }
+
+        return [
+            'commandId' => $commandId,
+            'status' => $status,
+            'errors' => $errors,
+            'shipmentId' => $shipmentId
+        ];
     }
 
     public function main() {

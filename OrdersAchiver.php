@@ -11,7 +11,7 @@ class OrdersAchiver{
     }
 
     public function moveOrdersToArchive() {
-        $sql = "INSERT INTO orders_archive 
+        $sql1 = "INSERT INTO orders_archive 
         SELECT 
             order_id, 
             kind_of_wood, 
@@ -30,34 +30,45 @@ class OrdersAchiver{
         FROM orders 
         WHERE order_status = 3";
 
-        $sql2 = "DELETE FROM orders WHERE order_status = 3";
-        
-        try {
+        $sql2 = "UPDATE additional_order_data 
+                 SET order_id_copy = order_id, order_id = NULL 
+                 WHERE order_id IN (SELECT order_id FROM orders WHERE order_status = 3)";
 
+        $sql3 = "DELETE FROM orders WHERE order_status = 3";
+
+        try {
             $this->mysqli->begin_transaction();
 
-            $result1 = $this->mysqli->query($sql);
+            $result1 = $this->mysqli->query($sql1);
         
             if ($result1 === TRUE) {
                 $result2 = $this->mysqli->query($sql2);
-        
+
                 if ($result2 === TRUE) {
-                    $this->mysqli->commit();
+                    $result3 = $this->mysqli->query($sql3);
+
+                    if ($result3 === TRUE) {
+                        $this->mysqli->commit();
+                        echo "Transakcja zakończona sukcesem.";
+                    } else {
+                        $this->mysqli->rollback();
+                        echo "Trzecie zapytanie nie powiodło się. Transakcja została wycofana: " . $this->mysqli->error;
+                    }
                 } else {
                     $this->mysqli->rollback();
-                    echo "Drugie zapytanie nie powiodło się. Transakcja została wycofana.";
+                    echo "Drugie zapytanie nie powiodło się. Transakcja została wycofana: " . $this->mysqli->error;
                 }
             } else {
                 $this->mysqli->rollback();
-                echo "Pierwsze zapytanie nie powiodło się. Transakcja została wycofana.";
+                echo "Pierwsze zapytanie nie powiodło się. Transakcja została wycofana: " . $this->mysqli->error;
             }
         } catch (Exception $e) {
-
             $this->mysqli->rollback();
             echo "Wystąpił błąd: " . $e->getMessage() . ". Transakcja została wycofana.";
         }
-        DatabaseConnection::closeConnection();
         
+        DatabaseConnection::closeConnection();
     }
 }
+
 ?>

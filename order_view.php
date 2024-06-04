@@ -61,7 +61,7 @@
             <th>Nr</th>
             <th>Drewno</th>
             <th>Wymiary</th>
-            <th style="border-right: 0px";>Lakier</th>
+            <th>Lakier</th>
             <th>Olej</th>
             <th>Frez</th>
             <th>Telefon</th>
@@ -83,7 +83,10 @@
         $orders = $orderModel->getAllOrders();
 
         if ($orders && $orders->num_rows > 0) {
-            while ($row = $orders->fetch_assoc()) : ?>
+            while ($row = $orders->fetch_assoc()) : 
+                if ($row['order_status'] >= 3) {
+                    continue; // Skip this iteration if order_status is 3 or greater
+                } ?>
                 <tr>
                     <td><?php echo $row['order_id']; ?></td>
                     <td><?php echo $row['kind_of_wood']; ?></td>

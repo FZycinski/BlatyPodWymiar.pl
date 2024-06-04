@@ -11,9 +11,9 @@ if (!isset($_SESSION['user_id'])) {
 require_once 'config/DatabaseConnection.php';
 
 $mysqli = DatabaseConnection::getConnection();
-require_once 'Order.php';
+require_once '/models/Order.php';
 
 $orderModel = new Order($mysqli);
 $orders = $orderModel->getAllOrders();
 
-include 'order_view.php';
+include 'views/order_view.php';

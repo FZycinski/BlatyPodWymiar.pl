@@ -77,7 +77,7 @@
         require_once __DIR__ . '/../config/DatabaseConnection.php';
         echo  __DIR__ . '/../config/DatabaseConnection.php';
 
-        require_once '/models/Order.php';
+        require_once __DIR__ . '/../models/Order.php';
         $mysqli = DatabaseConnection::getConnection();
 
 

@@ -5,7 +5,7 @@
 ini_set('session.gc_maxlifetime', 3600);
 session_set_cookie_params(3600);
 session_start();
-include_once("views/structure/header.php");
+include_once("../views/structure/header.php");
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: views/login_view.php");

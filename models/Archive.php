@@ -9,7 +9,7 @@ class Archive {
     }
 
     public function getAllOrders() {
-        $sql = "SELECT * FROM orders WHERE order_id = 3";
+        $sql = "SELECT * FROM orders WHERE order_status = 3";
         return $this->mysqli->query($sql);
     }
 }

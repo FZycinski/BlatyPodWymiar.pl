@@ -13,7 +13,20 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 if(isset($_POST['order_ids'])){
-    $_SESSION['order_ids'] = $_POST['order_ids'];
+    $orderIds = $_POST['order_ids'];
+    $orderIds = trim($orderIdsString, ',');
+    $orderIdsArray = explode(',', $orderIdsString);
+
+    $validOrderIds = array();
+
+foreach ($orderIdsArray as $orderId) {
+    if (is_numeric($orderId)) {
+        $validOrderIds[] = $orderId;
+    } else {
+        echo "Cofnij i podaj liczby jeszcze raz";
+    }
+}
+    $_SESSION['order_ids'] = $validOrderIds;
     echo "kaniuk";
 }
 

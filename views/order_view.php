@@ -176,7 +176,7 @@
     
     var confirmation = confirm("Czy na pewno chcesz usunąć to zamówienie? A nie przenieść do Archiwum?");
     if (confirmation) {
-        window.location.href = "delete_order.php?id=" + orderId;
+        window.location.href = "controllers/delete_order.php?id=" + orderId;
     } else {}
 }
     </script>

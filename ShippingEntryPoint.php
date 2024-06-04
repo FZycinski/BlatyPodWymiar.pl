@@ -27,7 +27,6 @@ foreach ($orderIdsArray as $orderId) {
     }
 }
     $_SESSION['order_ids'] = $validOrderIds;
-    echo "kaniuk";
 }
 
 $config = include('config/api_config.php');

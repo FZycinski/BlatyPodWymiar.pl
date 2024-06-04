@@ -74,8 +74,8 @@
         </tr>
         <?php
         include_once '/config/order_status.php';
-        require_once __DIR__ . '../config/DatabaseConnection.php';
-        echo  __DIR__ . '../config/DatabaseConnection.php';
+        require_once __DIR__ . '/../config/DatabaseConnection.php';
+        echo  __DIR__ . '/../config/DatabaseConnection.php';
 
         require_once '/models/Order.php';
         $mysqli = DatabaseConnection::getConnection();

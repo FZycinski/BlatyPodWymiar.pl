@@ -9,20 +9,9 @@ on:
       - main
 
 jobs:
-  build:
-    name: Build and Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Run tests
-        run: |
-          echo "Running tests..."
   deploy_staging:
     name: Deploy to Staging
     runs-on: ubuntu-latest
-    needs: build
     if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout code
@@ -37,4 +26,4 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd ~/websites/test.blatypodwymiar.pl
-            git pull ori main
+            git pull origin main

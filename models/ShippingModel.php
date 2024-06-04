@@ -54,7 +54,7 @@ class ShippingModel {
                             'email' => 'artur.zycinski.dekor.stone@gmail.com',
                             'phone' => '535026224',
                         ],
-                        'referenceNumber' => 'Zamowienie nr' . $result['order_id'],
+                        'referenceNumber' => 'Zamowienie nr ' . $result['order_id'],
                         'description' => 'Blaty drewniane', 
                         'packages' => [
                             [
@@ -84,6 +84,14 @@ class ShippingModel {
                         'labelFormat' => 'PDF',
                     ]
                 ];
+                if($result['order_payment_type'] == 'CASH_ON_DELIVERY') {
+                    $shippingData['input']['cashOnDelivery'] = [
+                        'amount' => '107,49',
+                        'currency' => 'PLN',
+                        'ownerName' => $result['delivery_address_firstName'] . ' ' . $result['delivery_address_lastName'],
+                        'iban' => 'PL51102029800000270200894980',
+                      ];
+                }
                 
                 return $shippingData;
             } else {

@@ -73,9 +73,9 @@
             <th>Akcje</th>
         </tr>
         <?php
-        include_once '../config/order_status.php';
-        require_once '../config/DatabaseConnection.php';
-        require_once '../models/Order.php';
+        include_once '/config/order_status.php';
+        require_once '/config/DatabaseConnection.php';
+        require_once '/models/Order.php';
         $mysqli = DatabaseConnection::getConnection();
 
 

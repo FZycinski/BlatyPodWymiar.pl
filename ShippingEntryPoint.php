@@ -13,8 +13,8 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 if(isset($_POST['order_ids'])){
-    $orderIds = $_POST['order_ids'];
-    $orderIds = trim($orderIdsString, ',');
+    $orderIdsString = $_POST['order_ids'];
+    $orderIdsString = trim($orderIdsString, ',');
     $orderIdsArray = explode(',', $orderIdsString);
 
     $validOrderIds = array();

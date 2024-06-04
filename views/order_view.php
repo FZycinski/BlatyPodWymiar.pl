@@ -75,7 +75,6 @@
         <?php
         include_once __DIR__ . '/../config/order_status.php';
         require_once __DIR__ . '/../config/DatabaseConnection.php';
-        echo  __DIR__ . '/../config/DatabaseConnection.php';
 
         require_once __DIR__ . '/../models/Order.php';
         $mysqli = DatabaseConnection::getConnection();
@@ -184,7 +183,7 @@
 </body>
 
 
-<?php require_once '../controllers/OrderEditor.php';
+<?php require_once __DIR__ . '/../controllers/OrderEditor.php';
 require_once 'EditOrderForm.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["edit_id"])) {

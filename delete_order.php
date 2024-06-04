@@ -39,5 +39,5 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 ?>
 <script>
 alert("Zamówienie zostało usunięte.");
-window.location.href = "index.php";
+//window.location.href = "index.php";
 </script>

@@ -17,7 +17,3 @@ $orderModel = new Order($mysqli);
 $orders = $orderModel->getAllOrders();
 
 include 'order_view.php';
-include 'OrdersAchiver.php';
-
-$ordersAchiver = new OrdersAchiver($mysqli);
-$ordersAchiver->moveOrdersToArchive();

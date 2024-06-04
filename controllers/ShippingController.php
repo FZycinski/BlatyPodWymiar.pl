@@ -114,9 +114,10 @@ class ShippingController {
         if (isset($_GET["code"])) {
             $accessToken = $this->getAccessToken($_GET["code"]);
     
-            if (isset($_POST['order_ids'])) {
-                $orderIds = $_POST['order_ids'];
-    
+            if (isset($_SESSION['order_ids'])) {
+                $orderIds = $_SESSION['order_ids'];
+                unset($_SESSION['order_ids']);
+                
                 foreach ($orderIds as $orderId) {
                     $shippingData = $this->model->getShippingData($orderId);
     

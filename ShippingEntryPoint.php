@@ -12,6 +12,10 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: views/login_view.php");
     exit;
 }
+if(isset($_POST['order_ids'])){
+    $_SESSION['order_ids'] = $_POST['order_ids'];
+    echo "kaniuk";
+}
 
 $config = include('config/api_config.php');
 define('CLIENT_ID', $config['client_id']);

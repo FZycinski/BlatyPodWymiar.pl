@@ -9,18 +9,20 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $mysqli->begin_transaction();
 
     try {
-        $sql = "DELETE FROM orders WHERE order_id = ?";
-        $stmt = $mysqli->prepare($sql);
-        $stmt->bind_param("i", $id);
-        if (!$stmt->execute()) {
-            throw new Exception("Error deleting order: " . $stmt->error);
-        }
-
+        // First, delete the rows in the additional_order_data table
         $sql = "DELETE FROM additional_order_data WHERE order_id = ?";
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param("i", $id);
         if (!$stmt->execute()) {
             throw new Exception("Error deleting additional order data: " . $stmt->error);
+        }
+        
+        // Then, delete the row in the orders table
+        $sql = "DELETE FROM orders WHERE order_id = ?";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("i", $id);
+        if (!$stmt->execute()) {
+            throw new Exception("Error deleting order: " . $stmt->error);
         }
 
         $mysqli->commit();

@@ -89,7 +89,6 @@ class ShippingModel {
                         'amount' => '107.49',
                         'currency' => 'PLN',
                         'ownerName' => $result['delivery_address_firstName'] . ' ' . $result['delivery_address_lastName'],
-                        'iban' => 'PL51102029800000270200894980',
                       ];
                 }
                 

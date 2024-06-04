@@ -85,11 +85,12 @@ class ShippingModel {
                     ]
                 ];
                 if($result['order_payment_type'] == 'CASH_ON_DELIVERY') {
-                    $shippingData['input']['cashOnDelivery'] = [
-                        'amount' => '107.49',
-                        'currency' => 'PLN',
-                        'ownerName' => $result['delivery_address_firstName'] . ' ' . $result['delivery_address_lastName'],
-                      ];
+                    echo "Zamówienie nr: " . $result['order_id'] . " zrób przez allegro.pl bo jest za pobraniem.";
+                    // $shippingData['input']['cashOnDelivery'] = [
+                    //     'amount' => '107.49', // nie wiem skad pobrac te dane
+                    //     'currency' => 'PLN',
+                    //     'ownerName' => $result['delivery_address_firstName'] . ' ' . $result['delivery_address_lastName'],
+                    //   ];
                 }
                 
                 return $shippingData;

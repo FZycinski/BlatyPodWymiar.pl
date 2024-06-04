@@ -46,6 +46,3 @@ $model = new ShippingModel($mysqli);
 $controller = new ShippingController($model);
 $controller->main();
 
-?>
-
-

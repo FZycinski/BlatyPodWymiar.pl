@@ -70,6 +70,7 @@ body {
     <a href="/views/archive_view.php">Archiwum</a>
     <a href="/views/calculator_view.php">Kalkulator</a>
     <a href="/controllers/api_connect.php">Zamówienia Allegro</a>
+    <a href="/views/get_order_id_for_label_creation.php">Stwórz etykiety</a>
     <a href="/controllers/logout.php">Wyloguj</a>
   </div>
 </div>

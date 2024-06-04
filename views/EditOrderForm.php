@@ -8,7 +8,7 @@ class EditOrderForm {
     }
 
     public function render() {
-        $form = '<form action="order_view.php" method="post">';
+        $form = '<form action="index.php" method="post">';
         $form .= '<input type="hidden" name="order_id" value="' . $this->orderData['order_id'] . '">';
         $form .= '<input type="hidden" name="edit_id" value="' . $this->orderData['order_id'] . '">';
         $form .= '<table>';

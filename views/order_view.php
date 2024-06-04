@@ -73,7 +73,7 @@
             <th>Akcje</th>
         </tr>
         <?php
-        include_once '/config/order_status.php';
+        include_once __DIR__ . '/../config/order_status.php';
         require_once __DIR__ . '/../config/DatabaseConnection.php';
         echo  __DIR__ . '/../config/DatabaseConnection.php';
 
@@ -87,7 +87,7 @@
         if ($orders && $orders->num_rows > 0) {
             while ($row = $orders->fetch_assoc()) : 
                 if ($row['order_status'] >= 3) {
-                    continue; // Skip this iteration if order_status is 3 or greater
+                    continue; 
                 } ?>
                 <tr>
                     <td><?php echo $row['order_id']; ?></td>

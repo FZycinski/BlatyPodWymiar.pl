@@ -61,7 +61,7 @@ class ShippingController {
                 if ($status != "IN_PROGRESS") {
                     break;
                 }
-                sleep(5);
+                sleep(2);
             } else {
                 echo "Failed to check shipment status. HTTP Code: " . $httpCode . ". Response: " . $response;
                 return null;
@@ -117,7 +117,7 @@ class ShippingController {
             if (isset($_SESSION['order_ids'])) {
                 $orderIds = $_SESSION['order_ids'];
                 unset($_SESSION['order_ids']);
-                
+
                 foreach ($orderIds as $orderId) {
                     $shippingData = $this->model->getShippingData($orderId);
     
@@ -132,7 +132,7 @@ class ShippingController {
     
                             if (isset($statusResponse['shipmentId'])) {
                                 $shipmentId = $statusResponse['shipmentId'];
-                                $label = $this->getShipmentLabel($accessToken, [$shipmentId]);
+                                $this->getShipmentLabel($accessToken, [$shipmentId]);
                                 include('views/shipping_view.php');
                             } else {
                                 echo "Failed to retrieve shipmentId from status response.";

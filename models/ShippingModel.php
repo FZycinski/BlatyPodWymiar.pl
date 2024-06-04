@@ -54,7 +54,7 @@ class ShippingModel {
                             'email' => 'artur.zycinski.dekor.stone@gmail.com',
                             'phone' => '535026224',
                         ],
-                        'referenceNumber' => 'Zamowienie nr:' . $result['order_id'],
+                        'referenceNumber' => 'Zamowienie nr' . $result['order_id'],
                         'description' => 'Blaty drewniane', 
                         'packages' => [
                             [

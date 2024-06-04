@@ -109,7 +109,7 @@ $orders = $orderModel->getAllOrders();
         if ($orders && $orders->num_rows > 0) {
             while ($row = $orders->fetch_assoc()) : ?>
                 <tr>
-    <form action="../controllers/delete_from_archive.php" method="GET">
+    <form action="../controllers/delete_order.php" method="GET">
         <td><?php echo $row['order_id']; ?></td>
         <td><?php echo $row['kind_of_wood']; ?></td>
         <td><?php echo $row['dimensions']; ?></td>

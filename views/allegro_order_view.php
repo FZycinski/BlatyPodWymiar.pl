@@ -149,7 +149,7 @@ function fetchOrders($access_token)
         echo '<tr>';
         echo '<td>Płatność: ';
         echo $form['payment']['type'] . ', Zapłacone: ' . $form['payment']['paidAmount']['amount'] . ' ' . $form['payment']['paidAmount']['currency'] . '</td>';
-        echo '<td>Koszt:' . $form['cost']['amount'] . $form['payment']['paidAmount']['reconciliation'] . $form['surcharges']['reconciliation']['amount'] . '</td>';
+        echo '<td>Koszt:' . $form['cost']['amount'] . $form['payment']['paidAmount']['reconciliation'] . '</td>';
         echo '<td>Wiadomość:';
         echo '<br>' . $form['messageToSeller'] . '</td>';
         echo '</tr>';

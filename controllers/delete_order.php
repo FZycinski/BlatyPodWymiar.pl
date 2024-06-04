@@ -1,5 +1,5 @@
 <?php
-require_once 'config/DatabaseConnection.php';
+require_once '../config/DatabaseConnection.php';
 
 $mysqli = DatabaseConnection::getConnection();
 
@@ -9,7 +9,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $mysqli->begin_transaction();
 
     try {
-        // First, delete the rows in the additional_order_data table
         $sql = "DELETE FROM additional_order_data WHERE order_id = ?";
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param("i", $id);
@@ -17,7 +16,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             throw new Exception("Error deleting additional order data: " . $stmt->error);
         }
         
-        // Then, delete the row in the orders table
         $sql = "DELETE FROM orders WHERE order_id = ?";
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param("i", $id);
@@ -41,5 +39,5 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 ?>
 <script>
 alert("Zamówienie zostało usunięte.");
-//window.location.href = "index.php";
+window.location.href = "../index.php";
 </script>

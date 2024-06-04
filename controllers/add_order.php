@@ -1,5 +1,5 @@
 <?php
-include_once 'config/DatabaseConnection.php';
+include_once '../config/DatabaseConnection.php';
 $mysqli = DatabaseConnection::getConnection();
 
 class AddOrder {
@@ -49,5 +49,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <script>
 alert("Zamówienie zostało dodane.");
-window.location.href = "index.php";
+window.location.href = "../index.php";
 </script>

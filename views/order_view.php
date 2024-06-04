@@ -73,9 +73,9 @@
             <th>Akcje</th>
         </tr>
         <?php
-        include_once 'config/order_status.php';
-        require_once 'config/DatabaseConnection.php';
-        require_once 'Order.php';
+        include_once '../config/order_status.php';
+        require_once '../config/DatabaseConnection.php';
+        require_once '../models/Order.php';
         $mysqli = DatabaseConnection::getConnection();
 
 
@@ -182,7 +182,7 @@
 </body>
 
 
-<?php require_once 'OrderEditor.php';
+<?php require_once '../controllers/OrderEditor.php';
 require_once 'EditOrderForm.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["edit_id"])) {
@@ -207,7 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_id"])) {
 
     if ($success) {
         echo "Juhuuu! Zamówienie zostało zaktualizowane pomyślnie.";
-        echo "<script>setTimeout(function() { window.location.href = 'index.php'; }, 1000);</script>";
+        echo "<script>setTimeout(function() { window.location.href = '../index.php'; }, 1000);</script>";
     } else {
         echo "Wystąpił problem podczas aktualizacji zamówienia.";
     }

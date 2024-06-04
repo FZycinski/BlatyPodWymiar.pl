@@ -86,7 +86,7 @@ class ShippingModel {
                 ];
                 if($result['order_payment_type'] == 'CASH_ON_DELIVERY') {
                     $shippingData['input']['cashOnDelivery'] = [
-                        'amount' => '107,49',
+                        'amount' => '107.49',
                         'currency' => 'PLN',
                         'ownerName' => $result['delivery_address_firstName'] . ' ' . $result['delivery_address_lastName'],
                         'iban' => 'PL51102029800000270200894980',

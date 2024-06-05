@@ -21,8 +21,9 @@ class CalculatorController
 
     public function showForm()
     {
-        include '../app/Views/header.php';
-        include '../app/Views/calculate_prices.php';
+        include '../views/structure/header.php';
+        include '../views/calculate_prices.php';
+        include '../views/structure/footer.php';
     }
 }
 ?>

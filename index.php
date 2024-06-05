@@ -25,7 +25,9 @@ $controller = new CalculatorController();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $controller->handleRequest();
+    echo 'juhuu';
 } else {
     $controller->showForm();
+    echo 'test';
 }
 ?>

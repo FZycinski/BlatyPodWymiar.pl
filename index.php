@@ -23,9 +23,6 @@ use App\Controllers\CalculatorController;
 
 $controller = new CalculatorController();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     $controller->handleRequest();
-} else {
     $controller->showForm();
-}
-?>

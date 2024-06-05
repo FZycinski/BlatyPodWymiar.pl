@@ -27,7 +27,7 @@ class CalculatorController
         }
     }
 }
-?>
+
 
     //przywroc ta wersje pozniej
     // public function handleRequest()
@@ -37,5 +37,4 @@ class CalculatorController
     //     $results = $calculator->calculatePrices($formData);
     //     echo json_encode($results);
     // }
-}
 ?>

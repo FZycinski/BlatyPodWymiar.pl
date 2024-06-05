@@ -9,7 +9,7 @@ class CalculatorController
 {
     public function showForm()
     {
-        include '../views/calculate_prices.php';
+        include __DIR__ . '/../views/calculate_prices.php';
     }
 
     public function handleRequest()

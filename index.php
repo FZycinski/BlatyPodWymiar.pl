@@ -28,6 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo 'juhuu';
 } else {
     $controller->showForm();
-    echo 'test';
+    echo 'test show form powinno sie wykonywac';
 }
 ?>

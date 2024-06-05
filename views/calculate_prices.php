@@ -16,5 +16,5 @@
         <input type="hidden" id="allFormData" name="allFormData">
     </form>
 </div>
-<script src="/resources/js/scripts.js"></script>
+<script src="../resources/js/calculator_scripts.js"></script>
 <?php include_once 'structure/footer.php'; ?>

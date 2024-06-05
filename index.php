@@ -17,3 +17,17 @@ $orderModel = new Order($mysqli);
 $orders = $orderModel->getAllOrders();
 
 include 'views/order_view.php';
+
+require_once '../app/Controllers/CalculatorController.php';
+require_once '../app/Models/Calculator.php';
+
+use App\Controllers\CalculatorController;
+
+$controller = new CalculatorController();
+
+if (isset($_GET['action']) && $_GET['action'] === 'calculate') {
+    $controller->handleRequest();
+} else {
+    $controller->showForm();
+}
+?>

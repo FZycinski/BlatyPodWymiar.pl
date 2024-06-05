@@ -25,9 +25,10 @@ use App\Controllers\CalculatorController;
 
 $controller = new CalculatorController();
 
-if (isset($_GET['action']) && $_GET['action'] === 'calculate') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $controller->handleRequest();
 } else {
     $controller->showForm();
 }
+
 ?>

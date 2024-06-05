@@ -18,10 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['allFormData'])) {
                     Długość: <?php echo htmlspecialchars($item['length']); ?> cm<br>
                     Szerokość: <?php echo htmlspecialchars($item['width']); ?> cm<br>
                     Liczba sztuk: <?php echo htmlspecialchars($item['piece']); ?><br>
-                    Lakierowanie: <?php echo isset($item['varnish']) ? 'Tak' : 'Nie'; ?><br>
-                    Bejcowanie: <?php echo isset($item['stain']) ? 'Tak' : 'Nie'; ?><br>
-                    Olejowanie: <?php echo isset($item['oil']) ? 'Tak' : 'Nie'; ?><br>
-                    Frezowanie: <?php echo isset($item['mill']) ? 'Tak' : 'Nie'; ?><br>
+                    Lakierowanie: <?php echo !empty($item['varnish']) && $item['varnish'] === 'Tak' ? 'Tak' : 'Nie'; ?><br>
+                    Bejcowanie: <?php echo !empty($item['stain']) && $item['stain'] === 'Tak' ? 'Tak' : 'Nie'; ?><br>
+                    Olejowanie: <?php echo !empty($item['oil']) && $item['oil'] === 'Tak' ? 'Tak' : 'Nie'; ?><br>
+                    Frezowanie: <?php echo !empty($item['mill']) && $item['mill'] === 'Tak' ? 'Tak' : 'Nie'; ?><br>
                 </li>
             <?php endforeach; ?>
         </ul>

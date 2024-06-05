@@ -1,7 +1,8 @@
 <?php
 namespace App\Controllers;
+echo __DIR__ . '/models/Calculator.php';
+require_once __DIR__ . '/models/Calculator.php';
 
-require_once '../models/Calculator.php';
 use App\Models\Calculator;
 
 class CalculatorController

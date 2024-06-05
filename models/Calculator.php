@@ -22,13 +22,13 @@ class Calculator
             $basePricePerM2 = 0;
             switch ($woodType) {
                 case "Jesion":
-                    $basePricePerM2 = ($thickness === 38) ? 6.00 : ($thickness === 27) ? 4.10 : 0;
+                    $basePricePerM2 = ($thickness === 38) ? 6.00 : (($thickness === 27) ? 4.10 : 0);
                     break;
                 case "Dąb":
-                    $basePricePerM2 = ($thickness === 38) ? 6.50 : ($thickness === 27) ? 4.60 : ($thickness === 19) ? 3.20 : 0;
+                    $basePricePerM2 = ($thickness === 38) ? 6.50 : (($thickness === 27) ? 4.60 : (($thickness === 19) ? 3.20 : 0));
                     break;
                 case "Buk":
-                    $basePricePerM2 = ($thickness === 38) ? 5.10 : ($thickness === 27) ? 3.60 : ($thickness === 19) ? 2.50 : 0;
+                    $basePricePerM2 = ($thickness === 38) ? 5.10 : (($thickness === 27) ? 3.60 : (($thickness === 19) ? 2.50 : 0));
                     break;
                 default:
                     $basePricePerM2 = 0;

@@ -1,48 +1,65 @@
 .container {
-    width: 80%;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f8f8f8;
+    max-width: 800px;
+    background-color: #f4f4f4;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .calculatorFullForm {
     margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
 }
 
-.selector, .input {
-    display: block;
-    margin: 10px 0;
-    padding: 8px;
+.input, .selector {
     width: 100%;
-    max-width: 400px;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
 }
 
 .checkbox-container {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
-.checkbox-container label {
-    margin-left: 10px;
+.checkbox-container input {
+    margin-right: 10px;
 }
 
-.requirements {
-    color: red;
-    font-weight: bold;
+.calculateBtn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.calculateBtn:hover {
+    background-color: #0056b3;
+}
+
+.results {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 4px;
 }
 
 .summary {
     margin-top: 20px;
     padding: 10px;
-    background-color: #e0f7fa;
-    border-radius: 8px;
-}
-
-button {
-    margin: 10px 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+    background-color: #e9ecef;
+    border-radius: 4px;
 }

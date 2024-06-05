@@ -19,8 +19,6 @@ $orders = $orderModel->getAllOrders();
 include 'views/order_view.php';
 
 require_once 'controllers/CalculatorController.php';
-require_once 'models/Calculator.php';
-
 use App\Controllers\CalculatorController;
 
 $controller = new CalculatorController();
@@ -30,5 +28,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     $controller->showForm();
 }
-
 ?>

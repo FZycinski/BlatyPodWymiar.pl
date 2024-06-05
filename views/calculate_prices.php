@@ -1,3 +1,5 @@
+<?php include_once 'structure/header.php'; ?>
+<title>Kalkulator cen blatów</title>
 <div class="container">
     <div class="formsContainer" id="formsContainer"></div>
     <div class="summary" id="summary">
@@ -10,7 +12,9 @@
     <button id="newFormButton">Dodaj blat</button>
     <button id="submitFormsButton">Prześlij zamówienie</button>
 
-    <form id="hiddenForm" style="display: none;">
+    <form id="hiddenForm" action="" method="post" style="display: none;">
         <input type="hidden" id="allFormData" name="allFormData">
     </form>
 </div>
+<script src="/resources/js/scripts.js"></script>
+<?php include_once 'structure/footer.php'; ?>

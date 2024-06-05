@@ -16,6 +16,7 @@ class CalculatorController
     {
         $formData = json_decode($_POST['allFormData'], true);
         $calculator = new Calculator();
+        echo 'juhuuu';
         $results = $calculator->calculatePrices($formData);
         echo json_encode($results);
     }

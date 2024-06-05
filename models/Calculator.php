@@ -18,7 +18,6 @@ class Calculator
             $oil = isset($form['oil']);
             $mill = isset($form['mill']);
 
-            // Base price per m2
             $basePricePerM2 = 0;
             switch ($woodType) {
                 case "Jesion":

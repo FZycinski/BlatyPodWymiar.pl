@@ -12,9 +12,10 @@
     <button id="newFormButton">Dodaj blat</button>
     <button id="submitFormsButton">Prześlij zamówienie</button>
 
-    <form id="hiddenForm" action="/calculator/handleRequest" method="post" style="display: none;">
-        <input type="hidden" id="allFormData" name="allFormData">
-    </form>
+    <form id="hiddenForm" action="/calculator/handleRequest" method="POST">
+    <input type="hidden" id="allFormData" name="allFormData">
+</form>
+
 </div>
 <script src="../resources/js/calculator_scripts.js"></script>
 <?php include_once 'structure/footer.php'; ?>

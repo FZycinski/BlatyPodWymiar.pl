@@ -32,10 +32,8 @@ class CalculatorController
             echo "juhu3";
             error_log('No form data received.');
         }
-    }
-    
+    }   
 }
-
 
     //przywroc ta wersje pozniej
     // public function handleRequest()

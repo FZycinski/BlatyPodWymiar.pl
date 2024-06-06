@@ -25,9 +25,3 @@ class CalculatorController
         }
     }
 }
-
-// Routing
-if (isset($_GET['action']) && $_GET['action'] === 'handleRequest') {
-    $controller = new CalculatorController();
-    $controller->handleRequest();
-}

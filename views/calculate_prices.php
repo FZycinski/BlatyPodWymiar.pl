@@ -25,65 +25,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculated Prices</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <title>Price Calculator</title>
 </head>
 <body>
-    <h2>Calculated Prices</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Wood Type</th>
-                <th>Thickness</th>
-                <th>Length</th>
-                <th>Width</th>
-                <th>Pieces</th>
-                <th>Varnish</th>
-                <th>Stain</th>
-                <th>Oil</th>
-                <th>Mill</th>
-                <th>Price (Allegro)</th>
-                <th>Price (Outside Allegro)</th>
-                <th>Pieces (Allegro)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($results['results'] as $result): ?>
-                <tr>
-                    <td><?php echo $result['woodType']; ?></td>
-                    <td><?php echo $result['thickness']; ?></td>
-                    <td><?php echo $result['length']; ?></td>
-                    <td><?php echo $result['width']; ?></td>
-                    <td><?php echo $result['piece']; ?></td>
-                    <td><?php echo $result['varnish'] ? 'Yes' : 'No'; ?></td>
-                    <td><?php echo $result['stain'] ? 'Yes' : 'No'; ?></td>
-                    <td><?php echo $result['oil'] ? 'Yes' : 'No'; ?></td>
-                    <td><?php echo $result['mill'] ? 'Yes' : 'No'; ?></td>
-                    <td><?php echo $result['priceAllegro']; ?></td>
-                    <td><?php echo $result['priceOutsideAllegro']; ?></td>
-                    <td><?php echo $result['piecesAllegro']; ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <h3>Summary</h3>
-    <p>Total Price (Allegro): <?php echo $results['summary']['totalAllegro']; ?></p>
-    <p>Total Price (Outside Allegro): <?php echo $results['summary']['totalPrice']; ?></p>
-    <p>Discounted Price: <?php echo $results['summary']['discountedPrice']; ?></p>
+    <h2>Price Calculator</h2>
+    <form id="priceCalculatorForm">
+        <label for="woodType">Wood Type:</label>
+        <select name="woodType" id="woodType">
+            <option value="Jesion">Jesion</option>
+            <option value="Dąb">Dąb</option>
+            <option value="Buk">Buk</option>
+        </select><br><br>
+        <label for="thickness">Thickness (mm):</label>
+        <input type="number" name="thickness" id="thickness" min="1" step="1"><br><br>
+        <label for="length">Length (cm):</label>
+        <input type="number" name="length" id="length" min="1" step="1"><br><br>
+        <label for="width">Width (cm):</label>
+        <input type="number" name="width" id="width" min="1" step="1"><br><br>
+        <label for="piece">Number of Pieces:</label>
+        <input type="number" name="piece" id="piece" min="1" step="1"><br><br>
+        <input type="checkbox" name="varnish" id="varnish">
+        <label for="varnish">Varnish</label><br>
+        <input type="checkbox" name="stain" id="stain">
+        <label for="stain">Stain</label><br>
+        <input type="checkbox" name="oil" id="oil">
+        <label for="oil">Oil</label><br>
+        <input type="checkbox" name="mill" id="mill">
+        <label for="mill">Mill</label><br><br>
+        <button type="button" onclick="calculatePrices()">Calculate Prices</button>
+    </form>
+
+    <div id="results"></div>
+
+    <script>
+        function calculatePrices() {
+            var formData = {
+                woodType: document.getElementById('woodType').value,
+                thickness: document.getElementById('thickness').value,
+                length: document.getElementById('length').value,
+                width: document.getElementById('width').value,
+                piece: document.getElementById('piece').value,
+                varnish: document.getElementById('varnish').checked,
+                stain: document.getElementById('stain').checked,
+                oil: document.getElementById('oil').checked,
+                mill: document.getElementById('mill').checked
+            };
+
+            fetch('CalculatorController.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ allFormData: formData }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                var resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = '<h3>Results:</h3>';
+                data.results.forEach(result => {
+                    resultsDiv.innerHTML += '<p>Price (Allegro): ' + result.priceAllegro + '</p>';
+                    resultsDiv.innerHTML += '<p>Price (Outside Allegro): ' + result.priceOutsideAllegro + '</p>';
+                    resultsDiv.innerHTML += '<p>Pieces (Allegro): ' + result.piecesAllegro + '</p>';
+                });
+                resultsDiv.innerHTML += '<h3>Summary:</h3>';
+                resultsDiv.innerHTML += '<p>Total Price (Allegro): ' + data.summary.totalAllegro + '</p>';
+                resultsDiv.innerHTML += '<p>Total Price (Outside Allegro): ' + data.summary.totalPrice + '</p>';
+                resultsDiv.innerHTML += '<p>Discounted Price: ' + data.summary.discountedPrice + '</p>';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
 </body>
 </html>

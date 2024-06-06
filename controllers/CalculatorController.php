@@ -14,9 +14,10 @@ class CalculatorController
 
     public function handleRequest()
     {
-        echo 'juhuuu'; // Powinno wyświetlić się na stronie
+        echo "juhu1";
         error_log('handleRequest called'); // Zapisuje do loga PHP
         if (isset($_POST['allFormData'])) {
+            echo "juhu2";
             error_log('Form data received: ' . $_POST['allFormData']);
             $formData = json_decode($_POST['allFormData'], true);
             $calculator = new Calculator();

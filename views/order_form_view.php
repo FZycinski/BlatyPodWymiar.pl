@@ -1,9 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['allFormData'])) {
     $orderedItems = json_decode($_POST['allFormData'], true);
-    $priceAllegro = json_decode($_POST['totalPriceAllegro'], true);
-    echo 'Cena: ';
-    print_r ($priceAllegro);
 }
 var_dump($_POST['allFormData']);
 ?>
@@ -26,7 +23,7 @@ var_dump($_POST['allFormData']);
         Bejcowanie: <?php echo $item['stainChecked'] ? 'Tak' : 'Nie'; ?><br>
         Olejowanie: <?php echo $item['oilChecked'] ? 'Tak' : 'Nie'; ?><br>
         Frezowanie: <?php echo $item['millChecked'] ? 'Tak' : 'Nie'; ?><br>
-        Cena poza Allegro: <?php echo  ''; ?> zł<br>
+        Cena poza Allegro: <?php echo $item['totalPriceNonAllegro']; ?> zł<br>
         
     </li>
 <?php endforeach; ?>

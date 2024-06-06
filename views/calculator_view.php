@@ -283,20 +283,32 @@
     }
 
     function submitForms() {
-        var formsData = [];
-        var forms = document.querySelectorAll('.calculatorForm');
+    var formsData = [];
+    var forms = document.querySelectorAll('.calculatorForm');
 
-        forms.forEach(function(form, index) {
-            var formData = new FormData(form);
-            var formObj = {};
-            formData.forEach(function(value, key) {
-                formObj[key] = value;
-            });
-            formsData.push(formObj);
+    forms.forEach(function(form, index) {
+        var formData = new FormData(form);
+        var formObj = {};
+        formData.forEach(function(value, key) {
+            formObj[key] = value;
         });
 
-        document.getElementById('allFormData').value = JSON.stringify(formsData);
-        document.getElementById('hiddenForm').submit();
-    }
+        // Dodajemy również informacje o stanie checkboxów
+        var varnishChecked = document.getElementById("varnish" + index).checked;
+        var stainChecked = document.getElementById("stain" + index).checked;
+        var oilChecked = document.getElementById("oil" + index).checked;
+        var millChecked = document.getElementById("mill" + index).checked;
+
+        formObj['varnishChecked'] = varnishChecked;
+        formObj['stainChecked'] = stainChecked;
+        formObj['oilChecked'] = oilChecked;
+        formObj['millChecked'] = millChecked;
+
+        formsData.push(formObj);
+    });
+
+    document.getElementById('allFormData').value = JSON.stringify(formsData);
+    document.getElementById('hiddenForm').submit();
+}
 </script>
 </div>

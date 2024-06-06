@@ -18,11 +18,3 @@ $orders = $orderModel->getAllOrders();
 
 include 'views/order_view.php';
 
-require_once 'controllers/CalculatorController.php';
-use App\Controllers\CalculatorController;
-
-$controller = new CalculatorController();
-
-
-    $controller->handleRequest();
-    $controller->showForm();

@@ -1,17 +1,51 @@
 <?php
-print_r(    $orderedItems = json_decode($_POST['allFormData'], true).
-$name = $_POST['name'].
-$email = $_POST['email'].
-$phone = $_POST['phone'].
-$delivery_street = $_POST['address'] . ' ' . $_POST['housenumber'].
-$delivery_city = $_POST['city'].
-$delivery_zipCode = $_POST['zip'].
-$invoice_street = $_POST['invoice_address_street'].
-$invoice_city = $_POST['invoice_address_city'].
-$invoice_zipCode = $_POST['invoice_address_zipCode'].
-$company_name = $_POST['invoice_company_name'].
-$company_taxId = ''.
-$total_price = 0);
+    $orderedItems = json_decode($_POST['allFormData'], true);
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $delivery_street = $_POST['address'] . ' ' . $_POST['housenumber'];
+    $delivery_city = $_POST['city'];
+    $delivery_zipCode = $_POST['zip'];
+    $invoice_street = $_POST['invoice_address_street'];
+    $invoice_city = $_POST['invoice_address_city'];
+    $invoice_zipCode = $_POST['invoice_address_zipCode'];
+    $company_name = $_POST['invoice_company_name'];
+    $company_taxId = ''; // Uzupełnij to pole, jeśli jest wymagane
+    $totalPriceNonAllegroSum = 0; // Inicjalizacja sumy
+
+    // Oblicz całkowitą cenę
+    foreach ($orderedItems as $item) {
+        $totalPriceNonAllegroSum += $item['totalPriceNonAllegro'];
+    }
+
+    // Wyświetlenie wszystkich danych użytkownika
+    echo "Name: " . $name . "<br>";
+    echo "Email: " . $email . "<br>";
+    echo "Phone: " . $phone . "<br>";
+    echo "Delivery Street: " . $delivery_street . "<br>";
+    echo "Delivery City: " . $delivery_city . "<br>";
+    echo "Delivery Zip Code: " . $delivery_zipCode . "<br>";
+    echo "Invoice Street: " . $invoice_street . "<br>";
+    echo "Invoice City: " . $invoice_city . "<br>";
+    echo "Invoice Zip Code: " . $invoice_zipCode . "<br>";
+    echo "Company Name: " . $company_name . "<br>";
+    echo "Company Tax ID: " . $company_taxId . "<br>";
+    echo "Total Price: " . $totalPriceNonAllegroSum . "<br>";
+
+    // Wyświetlenie wszystkich danych zamówionych przedmiotów
+    foreach ($orderedItems as $index => $item) {
+        echo "<br>Ordered Item " . ($index + 1) . ": <br>";
+        echo "Wood Type: " . $item['woodType'] . "<br>";
+        echo "Thickness: " . $item['thickness'] . " mm<br>";
+        echo "Length: " . $item['length'] . " cm<br>";
+        echo "Width: " . $item['width'] . " cm<br>";
+        echo "Piece: " . $item['piece'] . "<br>";
+        echo "Varnish Checked: " . ($item['varnishChecked'] ? 'Yes' : 'No') . "<br>";
+        echo "Stain Checked: " . ($item['stainChecked'] ? 'Yes' : 'No') . "<br>";
+        echo "Oil Checked: " . ($item['oilChecked'] ? 'Yes' : 'No') . "<br>";
+        echo "Mill Checked: " . ($item['millChecked'] ? 'Yes' : 'No') . "<br>";
+        echo "Total Price Non Allegro: " . $item['totalPriceNonAllegro'] . " zł<br>";
+    }
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['allFormData'])) {
     $orderedItems = json_decode($_POST['allFormData'], true);
     $name = $_POST['name'];

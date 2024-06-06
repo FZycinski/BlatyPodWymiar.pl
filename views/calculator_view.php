@@ -71,7 +71,7 @@
 
     <form id="hiddenForm" action="order_form_view.php" method="post" style="display: none;">
         <input type="hidden" id="allFormData" name="allFormData">
-        <input type="hidden" id="totalPriceAllegro" name="totalPriceAllegro">
+        <input type="text" id="totalPriceAllegro" name="totalPriceAllegro">
     <input type="hidden" id="totalPriceNonAllegro" name="totalPriceNonAllegro">
     <input type="hidden" id="totalPiecesAllegro" name="totalPiecesAllegro">
     </form>

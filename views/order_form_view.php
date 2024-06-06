@@ -11,20 +11,22 @@ var_dump($_POST['allFormData']);
     <?php if (!empty($orderedItems)) : ?>
         <h3>Twoje zamówione przedmioty:</h3>
         <ul>
-            <?php foreach ($orderedItems as $index => $item) : ?>
-                <li>
-                    <strong>Przedmiot <?php echo $index + 1; ?>:</strong><br>
-                    Typ drewna: <?php echo htmlspecialchars($item['woodType']); ?><br>
-                    Grubość: <?php echo htmlspecialchars($item['thickness']); ?> mm<br>
-                    Długość: <?php echo htmlspecialchars($item['length']); ?> cm<br>
-                    Szerokość: <?php echo htmlspecialchars($item['width']); ?> cm<br>
-                    Liczba sztuk: <?php echo htmlspecialchars($item['piece']); ?><br>
-                    Lakierowanie: <?php echo $item['varnishChecked'] ? 'Tak' : 'Nie'; ?><br>
-                    Bejcowanie: <?php echo $item['stainChecked'] ? 'Tak' : 'Nie'; ?><br>
-                    Olejowanie: <?php echo $item['oilChecked'] ? 'Tak' : 'Nie'; ?><br>
-                    Frezowanie: <?php echo $item['millChecked'] ? 'Tak' : 'Nie'; ?><br>
-                </li>
-            <?php endforeach; ?>
+        <?php foreach ($orderedItems as $index => $item): ?>
+    <li>
+        <strong>Przedmiot <?php echo $index + 1; ?>:</strong><br>
+        Typ drewna: <?php echo htmlspecialchars($item['woodType']); ?><br>
+        Grubość: <?php echo htmlspecialchars($item['thickness']); ?> mm<br>
+        Długość: <?php echo htmlspecialchars($item['length']); ?> cm<br>
+        Szerokość: <?php echo htmlspecialchars($item['width']); ?> cm<br>
+        Liczba sztuk: <?php echo htmlspecialchars($item['piece']); ?><br>
+        Lakierowanie: <?php echo $item['varnishChecked'] ? 'Tak' : 'Nie'; ?><br>
+        Bejcowanie: <?php echo $item['stainChecked'] ? 'Tak' : 'Nie'; ?><br>
+        Olejowanie: <?php echo $item['oilChecked'] ? 'Tak' : 'Nie'; ?><br>
+        Frezowanie: <?php echo $item['millChecked'] ? 'Tak' : 'Nie'; ?><br>
+        Cena poza Allegro: <?php echo htmlspecialchars($item['price_outside_allegro']); ?> zł<br>
+        Cena całkowita poza Allegro: <?php echo htmlspecialchars($item['price_total_outside_allegro']); ?> zł<br>
+    </li>
+<?php endforeach; ?>
 
         </ul>
     <?php endif; ?>

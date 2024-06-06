@@ -74,7 +74,7 @@
     </form>
 </div>
 
-    <script>
+<script>
     document.getElementById("newFormButton").addEventListener("click", function(event) {
         createNewForm();
     });
@@ -117,7 +117,7 @@
             '</div>' +
             '<div class="checkbox-container">' +
             '<input type="checkbox" id="oil' + formIndex + '" value="oil">' +
-            '<label for="oil' + formIndex + '">Olejowanie</label>' +
+            '<label for="oil' + formIndex + '">Olejowanie (twardym woskiem olejowym)</label>' +
             '</div>' +
             '<div id="requirementsMessage' + formIndex + '" class="requirements"></div>' +
             '<input type="checkbox" id="mill' + formIndex + '" value="mill"> Frezowanie (10-50 zł/blat)<br>' +
@@ -228,6 +228,8 @@
             document.getElementById("result2" + formIndex).innerText = "Cena poza Allegro: " + priceWithDiscount.toFixed(2) + " zł.";
         }
         document.getElementById("result2" + formIndex).setAttribute('price_allegro2', priceWithDiscount.toFixed(2));
+        document.getElementById("result4" + formIndex).setAttribute('price_outside_allegro', totalPrice.toFixed(2));
+        document.getElementById("result5" + formIndex).setAttribute('price_total_outside_allegro', (totalPrice * piece).toFixed(2));
         if (!isNaN(totalPrice)) {
             document.getElementById("result3" + formIndex).innerText = "Do kupienia przez Allegro: " + Math.ceil(allegroPieces) + " szt.";
         }
@@ -283,32 +285,32 @@
     }
 
     function submitForms() {
-    var formsData = [];
-    var forms = document.querySelectorAll('.calculatorForm');
+        var formsData = [];
+        var forms = document.querySelectorAll('.calculatorForm');
 
-    forms.forEach(function(form, index) {
-        var formData = new FormData(form);
-        var formObj = {};
-        formData.forEach(function(value, key) {
-            formObj[key] = value;
+        forms.forEach(function(form, index) {
+            var formData = new FormData(form);
+            var formObj = {};
+            formData.forEach(function(value, key) {
+                formObj[key] = value;
+            });
+
+            // Dodajemy również informacje o stanie checkboxów
+            var varnishChecked = document.getElementById("varnish" + index).checked;
+            var stainChecked = document.getElementById("stain" + index).checked;
+            var oilChecked = document.getElementById("oil" + index).checked;
+            var millChecked = document.getElementById("mill" + index).checked;
+
+            formObj['varnishChecked'] = varnishChecked;
+            formObj['stainChecked'] = stainChecked;
+            formObj['oilChecked'] = oilChecked;
+            formObj['millChecked'] = millChecked;
+
+            formsData.push(formObj);
         });
 
-        // Dodajemy również informacje o stanie checkboxów
-        var varnishChecked = document.getElementById("varnish" + index).checked;
-        var stainChecked = document.getElementById("stain" + index).checked;
-        var oilChecked = document.getElementById("oil" + index).checked;
-        var millChecked = document.getElementById("mill" + index).checked;
-
-        formObj['varnishChecked'] = varnishChecked;
-        formObj['stainChecked'] = stainChecked;
-        formObj['oilChecked'] = oilChecked;
-        formObj['millChecked'] = millChecked;
-
-        formsData.push(formObj);
-    });
-
-    document.getElementById('allFormData').value = JSON.stringify(formsData);
-    document.getElementById('hiddenForm').submit();
-}
+        document.getElementById('allFormData').value = JSON.stringify(formsData);
+        document.getElementById('hiddenForm').submit();
+    }
 </script>
 </div>

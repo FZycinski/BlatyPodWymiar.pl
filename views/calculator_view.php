@@ -315,5 +315,7 @@
     document.getElementById('allFormData').value = JSON.stringify(formsData);
     document.getElementById('hiddenForm').submit();
 }
+document.getElementById('priceAllegro').value = totalPriceAllegro;
+document.getElementById('priceNonAllegro').value = totalPriceNonAllegro;
 </script>
 </div>

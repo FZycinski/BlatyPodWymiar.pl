@@ -71,10 +71,13 @@
 
     <form id="hiddenForm" action="order_form_view.php" method="post" style="display: none;">
         <input type="hidden" id="allFormData" name="allFormData">
+        <input type="hidden" id="totalPriceAllegro" name="totalPriceAllegro">
+        <input type="hidden" id="totalPriceNonAllegro" name="totalPriceNonAllegro">
+        <input type="hidden" id="totalPiecesAllegro" name="totalPiecesAllegro">
     </form>
 </div>
 
-    <script>
+<script>
     document.getElementById("newFormButton").addEventListener("click", function(event) {
         createNewForm();
     });
@@ -283,32 +286,36 @@
     }
 
     function submitForms() {
-    var formsData = [];
-    var forms = document.querySelectorAll('.calculatorForm');
+        var formsData = [];
+        var forms = document.querySelectorAll('.calculatorForm');
 
-    forms.forEach(function(form, index) {
-        var formData = new FormData(form);
-        var formObj = {};
-        formData.forEach(function(value, key) {
-            formObj[key] = value;
+        forms.forEach(function(form, index) {
+            var formData = new FormData(form);
+            var formObj = {};
+            formData.forEach(function(value, key) {
+                formObj[key] = value;
+            });
+
+
+            var varnishChecked = document.getElementById("varnish" + index).checked;
+            var stainChecked = document.getElementById("stain" + index).checked;
+            var oilChecked = document.getElementById("oil" + index).checked;
+            var millChecked = document.getElementById("mill" + index).checked;
+
+            formObj['varnishChecked'] = varnishChecked;
+            formObj['stainChecked'] = stainChecked;
+            formObj['oilChecked'] = oilChecked;
+            formObj['millChecked'] = millChecked;
+
+            formsData.push(formObj);
+            document.getElementById('totalPriceAllegro').value = totalPriceAl1.toFixed(2);
+            document.getElementById('totalPriceNonAllegro').value = totalPriceAl2.toFixed(2);
+            document.getElementById('totalPiecesAllegro').value = totalPriceAl3.toFixed(2);
+
         });
 
-
-        var varnishChecked = document.getElementById("varnish" + index).checked;
-        var stainChecked = document.getElementById("stain" + index).checked;
-        var oilChecked = document.getElementById("oil" + index).checked;
-        var millChecked = document.getElementById("mill" + index).checked;
-
-        formObj['varnishChecked'] = varnishChecked;
-        formObj['stainChecked'] = stainChecked;
-        formObj['oilChecked'] = oilChecked;
-        formObj['millChecked'] = millChecked;
-
-        formsData.push(formObj);
-    });
-
-    document.getElementById('allFormData').value = JSON.stringify(formsData);
-    document.getElementById('hiddenForm').submit();
-}
+        document.getElementById('allFormData').value = JSON.stringify(formsData);
+        document.getElementById('hiddenForm').submit();
+    }
 </script>
 </div>

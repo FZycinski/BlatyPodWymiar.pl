@@ -14,33 +14,20 @@ class CalculatorController
 
     public function handleRequest()
     {
-        echo "juhu1";
-        error_log('handleRequest called'); // Zapisuje do loga PHP
-        if (isset($_POST['allFormData'])) {
-            echo "juhu2";
-            error_log('Form data received: ' . $_POST['allFormData']);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $formData = json_decode($_POST['allFormData'], true);
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                error_log('JSON decode error: ' . json_last_error_msg());
-                echo 'JSON decode error: ' . json_last_error_msg();
-            } else {
-                $calculator = new Calculator();
-                $results = $calculator->calculatePrices($formData);
-                echo json_encode($results);
-            }
+            $calculator = new Calculator();
+            $results = $calculator->calculatePrices($formData);
+            echo json_encode($results);
         } else {
-            echo "juhu3";
-            error_log('No form data received.');
+            http_response_code(405);
+            echo json_encode(['error' => 'Method Not Allowed']);
         }
-    }   
+    }
 }
 
-    //przywroc ta wersje pozniej
-    // public function handleRequest()
-    // {
-    //     $formData = json_decode($_POST['allFormData'], true);
-    //     $calculator = new Calculator();
-    //     $results = $calculator->calculatePrices($formData);
-    //     echo json_encode($results);
-    // }
-?>
+// Routing
+if (isset($_GET['action']) && $_GET['action'] === 'handleRequest') {
+    $controller = new CalculatorController();
+    $controller->handleRequest();
+}

@@ -9,7 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['allFormData'])) {
     <?php if (!empty($orderedItems)) : ?>
         <h3>Twoje zamówione przedmioty:</h3>
         <ul>
-        <?php foreach ($orderedItems as $index => $item): ?>
+        <?php foreach ($orderedItems as $index => $item): 
+            $totalPriceNonAllegroSum += $item['totalPriceNonAllegro'];
+            ?>
     <li>
         <strong>Przedmiot <?php echo $index + 1; ?>:</strong><br>
         Typ drewna: <?php echo htmlspecialchars($item['woodType']); ?><br>
@@ -22,9 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['allFormData'])) {
         Olejowanie: <?php echo $item['oilChecked'] ? 'Tak' : 'Nie'; ?><br>
         Frezowanie: <?php echo $item['millChecked'] ? 'Tak' : 'Nie'; ?><br>
         Cena poza Allegro: <?php echo $item['totalPriceNonAllegro']; ?> zł<br>
+
     </li>
 <?php endforeach; ?>
-Cena całkowita poza Allegro: <?php echo ''; ?> zł<br>
+Cena całkowita poza Allegro: <?php echo $totalPriceNonAllegroSum; ?> zł<br>
         </ul>
     <?php endif; ?>
 
@@ -49,17 +52,17 @@ Cena całkowita poza Allegro: <?php echo ''; ?> zł<br>
 
         <label for="zip">Kod pocztowy:</label>
         <input type="text" id="zip" name="zip" required><br>
-
-        <label for="invoice_company_name">Nazwa firmy do faktury:</label>
+            <p>Dane do faktury(jeśli dotyczy):</p>
+        <label for="invoice_company_name">Nazwa firmy:</label>
         <input type="text" id="invoice_company_name" name="invoice_company_name"><br>
 
-        <label for="invoice_address_street">Ulica do faktury:</label>
+        <label for="invoice_address_street">Ulica:</label>
         <input type="text" id="invoice_address_street" name="invoice_address_street"><br>
 
-        <label for="invoice_address_zipCode">Kod pocztowy do faktury:</label>
+        <label for="invoice_address_zipCode">Kod pocztowy:</label>
         <input type="text" id="invoice_address_zipCode" name="invoice_address_zipCode"><br>
 
-        <label for="invoice_address_city">Miasto do faktury:</label>
+        <label for="invoice_address_city">Miejscowość:</label>
         <input type="text" id="invoice_address_city" name="invoice_address_city"><br>
 
         <label for="comments">Dodatkowe uwagi:</label>

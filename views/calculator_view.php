@@ -232,14 +232,6 @@
             document.getElementById("result3" + formIndex).innerText = "Do kupienia przez Allegro: " + Math.ceil(allegroPieces) + " szt.";
         }
         document.getElementById("result3" + formIndex).setAttribute('price_allegro3', Math.ceil(allegroPieces));
-        document.getElementById("result2" + formIndex).setAttribute('price_allegro2', priceWithDiscount.toFixed(2));
-document.getElementById("result4" + formIndex).setAttribute('price_outside_allegro', totalPrice.toFixed(2));
-document.getElementById("result5" + formIndex).setAttribute('price_total_outside_allegro', (totalPrice * piece).toFixed(2));
-
-// Dodajemy informacje o cenie do danych formularza
-var formData = new FormData(document.getElementById("priceCalculatorForm" + formIndex));
-formData.append('price_allegro', totalPrice.toFixed(2));
-formData.append('price_outside_allegro', totalPrice.toFixed(2));
 
 
         const elementsWithPrice1 = document.querySelectorAll('[price_allegro1]');
@@ -300,6 +292,7 @@ formData.append('price_outside_allegro', totalPrice.toFixed(2));
         formData.forEach(function(value, key) {
             formObj[key] = value;
         });
+
 
         var varnishChecked = document.getElementById("varnish" + index).checked;
         var stainChecked = document.getElementById("stain" + index).checked;

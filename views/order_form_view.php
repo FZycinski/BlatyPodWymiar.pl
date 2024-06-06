@@ -1,8 +1,8 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['allFormData'])) {
     $orderedItems = json_decode($_POST['allFormData'], true);
-    $priceAllegro = $_POST['totalPriceAllegro'];
-    echo 'Cena' . $priceAllegro;
+    $priceAllegro = json_decode($_POST['totalPriceAllegro'], true);
+    echo 'Cena: ' . $priceAllegro;
 }
 var_dump($_POST['allFormData']);
 ?>

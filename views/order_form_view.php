@@ -2,12 +2,9 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['allFormData'])) {
     $orderedItems = json_decode($_POST['allFormData'], true);
 }
-var_dump($_POST['allFormData']);
 ?>
-
 <div>
     <h2>Złóż zamówienie</h2>
-
     <?php if (!empty($orderedItems)) : ?>
         <h3>Twoje zamówione przedmioty:</h3>
         <ul>
@@ -24,7 +21,6 @@ var_dump($_POST['allFormData']);
         Olejowanie: <?php echo $item['oilChecked'] ? 'Tak' : 'Nie'; ?><br>
         Frezowanie: <?php echo $item['millChecked'] ? 'Tak' : 'Nie'; ?><br>
         Cena poza Allegro: <?php echo $item['totalPriceNonAllegro']; ?> zł<br>
-        
     </li>
 <?php endforeach; ?>
 Cena całkowita poza Allegro: <?php echo ''; ?> zł<br>

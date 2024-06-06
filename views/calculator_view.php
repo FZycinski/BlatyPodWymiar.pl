@@ -293,7 +293,6 @@
             formObj[key] = value;
         });
 
-
         var varnishChecked = document.getElementById("varnish" + index).checked;
         var stainChecked = document.getElementById("stain" + index).checked;
         var oilChecked = document.getElementById("oil" + index).checked;
@@ -303,21 +302,21 @@
         formObj['stainChecked'] = stainChecked;
         formObj['oilChecked'] = oilChecked;
         formObj['millChecked'] = millChecked;
+
         var totalPriceAllegro = document.getElementById("result1" + index).getAttribute('price_allegro1');
         var totalPriceNonAllegro = document.getElementById("result2" + index).getAttribute('price_allegro2');
         var piecesForAllegro = document.getElementById("result3" + index).getAttribute('price_allegro3');
 
-        formObj['totalPriceAllegro'] = totalPriceAllegro;
-        formObj['totalPriceNonAllegro'] = totalPriceNonAllegro;
-        formObj['piecesForAllegro'] = piecesForAllegro;
+        formObj['totalPriceAllegro'] = parseFloat(totalPriceAllegro);
+        formObj['totalPriceNonAllegro'] = parseFloat(totalPriceNonAllegro);
+        formObj['piecesForAllegro'] = parseInt(piecesForAllegro);
 
         formsData.push(formObj);
-        
     });
-
 
     document.getElementById('allFormData').value = JSON.stringify(formsData);
     document.getElementById('hiddenForm').submit();
 }
+
 </script>
 </div>

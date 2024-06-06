@@ -1,37 +1,39 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['allFormData'])) {
     $orderedItems = json_decode($_POST['allFormData'], true);
-    print_r($orderedItems);
 }
 ?>
 <div>
     <h2>Złóż zamówienie</h2>
     <?php if (!empty($orderedItems)) : ?>
-        <h3>Twoje zamówione przedmioty:</h3>
-        <ul>
-        <?php foreach ($orderedItems as $index => $item): 
+    <h3>Twoje zamówione przedmioty:</h3>
+    <ul>
+        <?php 
+        $totalPriceNonAllegroSum = 0; // Inicjalizacja sumy
+        foreach ($orderedItems as $index => $item): 
+            // Dodawanie aktualnej wartości totalPriceNonAllegro do sumy
             $totalPriceNonAllegroSum += $item['totalPriceNonAllegro'];
-            ?>
-    <li>
-        <strong>Przedmiot <?php echo $index + 1; ?>:</strong><br>
-        Typ drewna: <?php echo htmlspecialchars($item['woodType']); ?><br>
-        Grubość: <?php echo htmlspecialchars($item['thickness']); ?> mm<br>
-        Długość: <?php echo htmlspecialchars($item['length']); ?> cm<br>
-        Szerokość: <?php echo htmlspecialchars($item['width']); ?> cm<br>
-        Liczba sztuk: <?php echo htmlspecialchars($item['piece']); ?><br>
-        Lakierowanie: <?php echo $item['varnishChecked'] ? 'Tak' : 'Nie'; ?><br>
-        Bejcowanie: <?php echo $item['stainChecked'] ? 'Tak' : 'Nie'; ?><br>
-        Olejowanie: <?php echo $item['oilChecked'] ? 'Tak' : 'Nie'; ?><br>
-        Frezowanie: <?php echo $item['millChecked'] ? 'Tak' : 'Nie'; ?><br>
-        Cena poza Allegro: <?php echo $item['totalPriceNonAllegro']; ?> zł<br>
+        ?>
+            <li>
+                <strong>Przedmiot <?php echo $index + 1; ?>:</strong><br>
+                Typ drewna: <?php echo htmlspecialchars($item['woodType']); ?><br>
+                Grubość: <?php echo htmlspecialchars($item['thickness']); ?> mm<br>
+                Długość: <?php echo htmlspecialchars($item['length']); ?> cm<br>
+                Szerokość: <?php echo htmlspecialchars($item['width']); ?> cm<br>
+                Liczba sztuk: <?php echo htmlspecialchars($item['piece']); ?><br>
+                Lakierowanie: <?php echo $item['varnishChecked'] ? 'Tak' : 'Nie'; ?><br>
+                Bejcowanie: <?php echo $item['stainChecked'] ? 'Tak' : 'Nie'; ?><br>
+                Olejowanie: <?php echo $item['oilChecked'] ? 'Tak' : 'Nie'; ?><br>
+                Frezowanie: <?php echo $item['millChecked'] ? 'Tak' : 'Nie'; ?><br>
+                Cena poza Allegro: <?php echo $item['totalPriceNonAllegro']; ?> zł<br>
+            </li>
+        <?php endforeach; ?>
+        Cena całkowita poza Allegro: <?php echo $totalPriceNonAllegroSum; ?> zł<br> <!-- Wyświetlenie sumy -->
+    </ul>
+<?php endif; ?>
 
-    </li>
-<?php endforeach; ?>
-Cena całkowita poza Allegro: <?php echo $totalPriceNonAllegroSum; ?> zł<br>
-        </ul>
-    <?php endif; ?>
 
-    <form id="orderForm" action="/controllers/submit_order.php" method="post">
+    <form id="orderForm" action="../controllers/submit_order.php" method="post">
         <label for="name">Imię i nazwisko:</label>
         <input type="text" id="name" name="name" required><br>
 

@@ -8,10 +8,10 @@ var_dump($_POST['allFormData']);
 <div>
     <h2>Złóż zamówienie</h2>
 
-    <?php if (!empty($orderedItems)): ?>
+    <?php if (!empty($orderedItems)) : ?>
         <h3>Twoje zamówione przedmioty:</h3>
         <ul>
-            <?php foreach ($orderedItems as $index => $item): ?>
+            <?php foreach ($orderedItems as $index => $item) : ?>
                 <li>
                     <strong>Przedmiot <?php echo $index + 1; ?>:</strong><br>
                     Typ drewna: <?php echo htmlspecialchars($item['woodType']); ?><br>
@@ -19,12 +19,13 @@ var_dump($_POST['allFormData']);
                     Długość: <?php echo htmlspecialchars($item['length']); ?> cm<br>
                     Szerokość: <?php echo htmlspecialchars($item['width']); ?> cm<br>
                     Liczba sztuk: <?php echo htmlspecialchars($item['piece']); ?><br>
-                    Lakierowanie: <?php echo !empty($item['varnish']) && $item['varnish'] === 'Tak' ? 'Tak' : 'Nie'; ?><br>
-                    Bejcowanie: <?php echo !empty($item['stain']) && $item['stain'] === 'Tak' ? 'Tak' : 'Nie'; ?><br>
-                    Olejowanie: <?php echo !empty($item['oil']) && $item['oil'] === 'Tak' ? 'Tak' : 'Nie'; ?><br>
-                    Frezowanie: <?php echo !empty($item['mill']) && $item['mill'] === 'Tak' ? 'Tak' : 'Nie'; ?><br>
+                    Lakierowanie: <?php echo $item['varnishChecked'] ? 'Tak' : 'Nie'; ?><br>
+                    Bejcowanie: <?php echo $item['stainChecked'] ? 'Tak' : 'Nie'; ?><br>
+                    Olejowanie: <?php echo $item['oilChecked'] ? 'Tak' : 'Nie'; ?><br>
+                    Frezowanie: <?php echo $item['millChecked'] ? 'Tak' : 'Nie'; ?><br>
                 </li>
             <?php endforeach; ?>
+
         </ul>
     <?php endif; ?>
 

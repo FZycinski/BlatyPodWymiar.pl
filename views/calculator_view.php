@@ -312,7 +312,6 @@
         formObj['piecesForAllegro'] = piecesForAllegro;
 
         formsData.push(formObj);
-        formsData.push(formObj);
         
     });
 

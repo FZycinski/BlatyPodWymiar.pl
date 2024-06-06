@@ -1,4 +1,5 @@
 <?php
+$totalPriceExcludingAllegro = 0;
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['allFormData'])) {
     $orderedItems = json_decode($_POST['allFormData'], true);
 }

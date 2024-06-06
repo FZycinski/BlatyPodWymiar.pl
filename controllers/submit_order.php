@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['orderedItems'])) {
     foreach ($orderedItems as $item) {
         $total_price += $item['totalPriceNonAllegro'];
     }
-    require_once 'config/DatabaseConnection.php';
+    require_once '../config/DatabaseConnection.php';
 
     $mysqli = DatabaseConnection::getConnection();
     

@@ -10,15 +10,13 @@ $orderedItems = json_decode($_POST['orderedItems'], true);
     $invoice_city = $_POST['invoice_address_city'];
     $invoice_zipCode = $_POST['invoice_address_zipCode'];
     $company_name = $_POST['invoice_company_name'];
-    $company_taxId = ''; // Uzupełnij to pole, jeśli jest wymagane
-    $totalPriceNonAllegroSum = 0; // Inicjalizacja sumy
+    $company_taxId = $_POST['company_taxId']; 
+    $totalPriceNonAllegroSum = 0; 
 
-    // Oblicz całkowitą cenę
     foreach ($orderedItems as $item) {
         $totalPriceNonAllegroSum += $item['totalPriceNonAllegro'];
     }
 
-    // Wyświetlenie wszystkich danych użytkownika
     echo "Name: " . $name . "<br>";
     echo "Email: " . $email . "<br>";
     echo "Phone: " . $phone . "<br>";
@@ -32,7 +30,6 @@ $orderedItems = json_decode($_POST['orderedItems'], true);
     echo "Company Tax ID: " . $company_taxId . "<br>";
     echo "Total Price: " . $totalPriceNonAllegroSum . "<br>";
 
-    // Wyświetlenie wszystkich danych zamówionych przedmiotów
     foreach ($orderedItems as $index => $item) {
         echo "<br>Ordered Item " . ($index + 1) . ": <br>";
         echo "Wood Type: " . $item['woodType'] . "<br>";
@@ -58,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['orderedItems'])) {
     $invoice_city = $_POST['invoice_address_city'];
     $invoice_zipCode = $_POST['invoice_address_zipCode'];
     $company_name = $_POST['invoice_company_name'];
-    $company_taxId = '';
+    $company_taxId = $_POST['company_taxId'];
     $total_price = 0;
 
     foreach ($orderedItems as $item) {

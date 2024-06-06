@@ -12,7 +12,7 @@
     <button id="newFormButton">Dodaj blat</button>
     <button id="submitFormsButton">Prześlij zamówienie</button>
 
-    <form id="hiddenForm" action="/calculator/handleRequest" method="POST">
+    <form id="hiddenForm" action="../controllers/CalculatorController.php" method="POST">
     <input type="hidden" id="allFormData" name="allFormData">
 </form>
 

@@ -310,9 +310,7 @@
         formsData.push(formObj);
         
     });
-    document.getElementById('totalPriceAllegro').value = totalPriceAl1.toFixed(2);
-document.getElementById('totalPriceNonAllegro').value = totalPriceAl2.toFixed(2);
-document.getElementById('totalPiecesAllegro').value = totalPriceAl3.toFixed(2);
+
 
     document.getElementById('allFormData').value = JSON.stringify(formsData);
     document.getElementById('hiddenForm').submit();

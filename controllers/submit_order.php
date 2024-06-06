@@ -46,8 +46,8 @@ $orderedItems = json_decode($_POST['orderedItems'], true);
         echo "Mill Checked: " . ($item['millChecked'] ? 'Yes' : 'No') . "<br>";
         echo "Total Price Non Allegro: " . $item['totalPriceNonAllegro'] . " zł<br>";
     }
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['allFormData'])) {
-    $orderedItems = json_decode($_POST['allFormData'], true);
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['orderedItems'])) {
+    $orderedItems = json_decode($_POST['orderedItems'], true);
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];

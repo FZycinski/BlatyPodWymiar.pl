@@ -1,5 +1,5 @@
 <?php
-    $orderedItems = json_decode($_POST['allFormData'], true);
+$orderedItems = json_decode($_POST['orderedItems'], true);
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];

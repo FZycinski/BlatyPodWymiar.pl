@@ -19,7 +19,6 @@
 </div>
 <script src="../resources/js/calculator_scripts.js"></script>
  -->
-
  <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +28,7 @@
 </head>
 <body>
     <h2>Price Calculator</h2>
-    <form id="priceCalculatorForm">
+    <form id="priceCalculatorForm" action="../controllers/CalculatorController.php" method="POST">
         <label for="woodType">Wood Type:</label>
         <select name="woodType" id="woodType">
             <option value="Jesion">Jesion</option>
@@ -52,7 +51,7 @@
         <label for="oil">Oil</label><br>
         <input type="checkbox" name="mill" id="mill">
         <label for="mill">Mill</label><br><br>
-        <button type="button" onclick="calculatePrices()">Calculate Prices</button>
+        <button type="submit">Calculate Prices</button>
     </form>
 
     <div id="results"></div>
@@ -71,7 +70,7 @@
                 mill: document.getElementById('mill').checked
             };
 
-            fetch('CalculatorController.php', {
+            fetch('../controllers/CalculatorController.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

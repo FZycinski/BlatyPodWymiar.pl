@@ -67,6 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['allFormData'])) {
         <label for="invoice_address_city">Miejscowość:</label>
         <input type="text" id="invoice_address_city" name="invoice_address_city"><br>
 
+        <label for="company_taxId">NIP:</label>
+        <input type="text" id="company_taxId" name="company_taxId"><br>
+        
         <label for="comments">Dodatkowe uwagi:</label>
         <textarea id="comments" name="comments" rows="4"></textarea><br>
         <input type="hidden" name="orderedItems" value='<?php echo json_encode($orderedItems); ?>'>

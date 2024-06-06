@@ -71,9 +71,6 @@
 
     <form id="hiddenForm" action="order_form_view.php" method="post" style="display: none;">
         <input type="hidden" id="allFormData" name="allFormData">
-        <input type="text" id="totalPriceAllegro" name="totalPriceAllegro">
-    <input type="hidden" id="totalPriceNonAllegro" name="totalPriceNonAllegro">
-    <input type="hidden" id="totalPiecesAllegro" name="totalPiecesAllegro">
     </form>
 </div>
 
@@ -306,7 +303,15 @@
         formObj['stainChecked'] = stainChecked;
         formObj['oilChecked'] = oilChecked;
         formObj['millChecked'] = millChecked;
+        var totalPriceAllegro = document.getElementById("result1" + index).getAttribute('price_allegro1');
+        var totalPriceNonAllegro = document.getElementById("result2" + index).getAttribute('price_allegro2');
+        var piecesForAllegro = document.getElementById("result3" + index).getAttribute('price_allegro3');
 
+        formObj['totalPriceAllegro'] = totalPriceAllegro;
+        formObj['totalPriceNonAllegro'] = totalPriceNonAllegro;
+        formObj['piecesForAllegro'] = piecesForAllegro;
+
+        formsData.push(formObj);
         formsData.push(formObj);
         
     });

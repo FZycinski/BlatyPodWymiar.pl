@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['allFormData'])) {
 
         <label for="comments">Dodatkowe uwagi:</label>
         <textarea id="comments" name="comments" rows="4"></textarea><br>
-
+        <input type="hidden" name="orderedItems" value='<?php echo json_encode($orderedItems); ?>'>
         <input type="submit" value="Złóż zamówienie">
     </form>
 </div>

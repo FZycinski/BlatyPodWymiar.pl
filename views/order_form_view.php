@@ -26,7 +26,7 @@ var_dump($_POST['allFormData']);
         Bejcowanie: <?php echo $item['stainChecked'] ? 'Tak' : 'Nie'; ?><br>
         Olejowanie: <?php echo $item['oilChecked'] ? 'Tak' : 'Nie'; ?><br>
         Frezowanie: <?php echo $item['millChecked'] ? 'Tak' : 'Nie'; ?><br>
-        Cena poza Allegro: <?php echo ''; ?> zł<br>
+        Cena poza Allegro: <?php echo  $totalPiecesAllegro . ' ' . $totalPriceNonAllegro . ' ' . $totalPriceAllegro; ?> zł<br>
         
     </li>
 <?php endforeach; ?>

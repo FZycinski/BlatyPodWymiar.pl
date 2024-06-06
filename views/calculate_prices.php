@@ -12,7 +12,7 @@
     <button id="newFormButton">Dodaj blat</button>
     <button id="submitFormsButton">Prześlij zamówienie</button>
 
-    <form id="hiddenForm" action="" method="post" style="display: none;">
+    <form id="hiddenForm" action="/calculator/handleRequest" method="post" style="display: none;">
         <input type="hidden" id="allFormData" name="allFormData">
     </form>
 </div>

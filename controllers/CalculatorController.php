@@ -20,13 +20,20 @@ class CalculatorController
             echo "juhu2";
             error_log('Form data received: ' . $_POST['allFormData']);
             $formData = json_decode($_POST['allFormData'], true);
-            $calculator = new Calculator();
-            $results = $calculator->calculatePrices($formData);
-            echo json_encode($results);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                error_log('JSON decode error: ' . json_last_error_msg());
+                echo 'JSON decode error: ' . json_last_error_msg();
+            } else {
+                $calculator = new Calculator();
+                $results = $calculator->calculatePrices($formData);
+                echo json_encode($results);
+            }
         } else {
+            echo "juhu3";
             error_log('No form data received.');
         }
     }
+    
 }
 
 

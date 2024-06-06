@@ -1,4 +1,18 @@
-<?php if (!empty($orderedItems)) : ?>
+
+<?php
+include 'strusture/header.php';
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['allFormData'])) {
+  $orderedItems = json_decode($_POST['allFormData'], true);
+}
+
+$totalPriceExcludingAllegro = 0; // Inicjalizacja zmiennej do sumowania cen poza Allegro
+
+?>
+
+<div>
+  <h2>Złóż zamówienie</h2>
+
+  <?php if (!empty($orderedItems)) : ?>
     <h3>Twoje zamówione przedmioty:</h3>
     <ul>
       <?php foreach ($orderedItems as $index => $item): ?>
@@ -73,8 +87,9 @@
 
           Cena poza Allegro: <?php echo $totalPricePerItem; ?> zł<br>
         </li>
-      <?php endforeach
-
+      <?php endforeach ?>
+      <body>
+<div>
     <form id="orderForm" action="/controllers/submit_order.php" method="post">
         <label for="name">Imię i nazwisko:</label>
         <input type="text" id="name" name="name" required><br>
@@ -115,3 +130,4 @@
         <input type="submit" value="Złóż zamówienie">
     </form>
 </div>
+</body>

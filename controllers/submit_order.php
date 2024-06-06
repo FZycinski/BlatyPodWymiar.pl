@@ -1,4 +1,17 @@
 <?php
+print_r(    $orderedItems = json_decode($_POST['allFormData'], true).
+$name = $_POST['name'].
+$email = $_POST['email'].
+$phone = $_POST['phone'].
+$delivery_street = $_POST['address'] . ' ' . $_POST['housenumber'].
+$delivery_city = $_POST['city'].
+$delivery_zipCode = $_POST['zip'].
+$invoice_street = $_POST['invoice_address_street'].
+$invoice_city = $_POST['invoice_address_city'].
+$invoice_zipCode = $_POST['invoice_address_zipCode'].
+$company_name = $_POST['invoice_company_name'].
+$company_taxId = ''.
+$total_price = 0);
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['allFormData'])) {
     $orderedItems = json_decode($_POST['allFormData'], true);
     $name = $_POST['name'];

@@ -1,6 +1,60 @@
 <?php include_once '../views/structure/header.php'; ?>
 <title>Kalkulator cen blatów</title>
+<style>
+    .container {
+        width: 70%;
+        margin: 0 auto;
+    }
 
+    .calculatorFullForm {
+        padding: 2px;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+
+    .calculatorForm {
+        padding: 2px;
+        flex: 1;
+        margin-right: 10px;
+        border-radius: 5px;
+    }
+
+    .results {
+        padding: 5px;
+        flex: 1;
+    }
+
+    .results p {
+        margin: 0;
+    }
+
+    #formsContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #newFormButton {
+        margin: 0 auto;
+        display: block;
+        padding: 10px 20px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #newFormButton:hover {
+        background-color: #0056b3;
+    }
+
+    #summary {
+        text-align: center;
+        font-size: 18px;
+    }
+</style>
 <div class="container">
     <div class="formsContainer" id="formsContainer"></div>
     <div class="summary" id="summary">

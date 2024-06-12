@@ -9,9 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['allFormData'])) {
     <h3>Twoje zamówione przedmioty:</h3>
     <ul>
         <?php 
-        $totalPriceNonAllegroSum = 0; // Inicjalizacja sumy
+        $totalPriceNonAllegroSum = 0;
         foreach ($orderedItems as $index => $item): 
-            // Dodawanie aktualnej wartości totalPriceNonAllegro do sumy
             $totalPriceNonAllegroSum += $item['totalPriceNonAllegro'];
         ?>
             <li>

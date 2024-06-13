@@ -221,10 +221,10 @@
         console.log(totalPriceAllegro);
         var priceWithDiscount = totalPrice * 0.9;
         if (!isNaN(totalPrice)) {
-            document.getElementById("result1" + formIndex).innerText = "Cena Allegro: " + totalPrice.toFixed(2) + " zł.";
+            document.getElementById("result1" + formIndex).innerText = "Cena Allegro: " + totalPriceAllegro.toFixed(2) + " zł.";
         }
 
-        document.getElementById("result1" + formIndex).setAttribute('price_allegro1', totalPrice.toFixed(2));
+        document.getElementById("result1" + formIndex).setAttribute('price_allegro1', totalPriceAllegro.toFixed(2));
         if (!isNaN(totalPrice)) {
             document.getElementById("result2" + formIndex).innerText = "Cena poza Allegro: " + priceWithDiscount.toFixed(2) + " zł.";
         }

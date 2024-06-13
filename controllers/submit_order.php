@@ -88,7 +88,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['orderedItems'])) {
 
     $email_body .= "<h3>Łączna Kwota: $total_price zł</h3>";
 
-    // Email Notification
     require '../config/mail_config.php'; 
 
     $mail = createMailer();

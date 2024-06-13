@@ -18,3 +18,4 @@ $orders = $orderModel->getAllOrders();
 
 include 'views/order_view.php';
 
+echo 'test';

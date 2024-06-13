@@ -17,7 +17,7 @@ if (!isset($_SESSION['user_id'])) {
     <title>Stwórz etykietę</title>
 </head>
 <body>
-    <h2>Wprowadź numery zamówień do wysłania</h2>
+    <h2>Wprowadź numery zamówień do wysłania (zadziała od zamówienia 172)</h2>
     <form action="../ShippingEntryPoint.php" method="post">
         <label for="order_ids">Numery zamówień (oddzielone przecinkami):</label><br>
         <textarea id="order_ids" name="order_ids" rows="1" cols="50"></textarea><br><br>

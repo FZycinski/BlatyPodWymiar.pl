@@ -1,57 +1,81 @@
-<style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 0;
-    }
-    
-    th, td {
-        padding: 8px;
-        text-align: left;
-        margin: 0;
-    }
+<?php
+// Include necessary configuration and models
+include_once __DIR__ . '/../config/order_status.php';
+require_once __DIR__ . '/../config/DatabaseConnection.php';
+require_once __DIR__ . '/../models/Order.php';
 
+// Establish database connection
+$mysqli = DatabaseConnection::getConnection();
+if ($mysqli->connect_errno) {
+    echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+    exit();
+}
 
-    input[type="text"],
-    input[type="number"],
-    select,
-    textarea {
-        width: 100%;
-        padding: 6px;
-        box-sizing: border-box;
-        margin: -5;
-    }
+// Create Order model instance
+$orderModel = new Order($mysqli);
 
+// Fetch all orders
+$orders = $orderModel->getAllOrders();
+?>
 
-    input[type="checkbox"] {
-        width: auto; 
-    }
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: left;
+            margin: 0;
+        }
 
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 6px;
+            box-sizing: border-box;
+            margin: -5;
+        }
 
-    input[type="date"] {
-        width: 100%; 
-    }
+        input[type="checkbox"] {
+            width: auto; 
+        }
 
-    input[type="submit"],
-    button {
-        padding: 8px 16px;
-        cursor: pointer;
-        background-color: #48693E;
-        color: white;
-        border: none;
-        border-radius: 4px;
-    }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
 
-    .header a.active {
-        background-color: #4CAF50;
-    }
-    select[name="kind_of_wood"] {
-        width: 50px; 
-    }
+        input[type="date"] {
+            width: 100%; 
+        }
+
+        input[type="submit"],
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+            background-color: #48693E;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .header a.active {
+            background-color: #4CAF50;
+        }
+        
+        select[name="kind_of_wood"] {
+            width: 50px; 
+        }
     </style>
+</head>
 <body>
 
     <h2>Zamówienia</h2>
@@ -73,21 +97,15 @@
             <th>Akcje</th>
         </tr>
         <?php
-        include_once __DIR__ . '/../config/order_status.php';
-        require_once __DIR__ . '/../config/DatabaseConnection.php';
-
-        require_once __DIR__ . '/../models/Order.php';
-        $mysqli = DatabaseConnection::getConnection();
-
-
-        $orderModel = new Order($mysqli);
-        $orders = $orderModel->getAllOrders();
-
+        // Check if orders exist
         if ($orders && $orders->num_rows > 0) {
-            while ($row = $orders->fetch_assoc()) : 
+            // Loop through each order
+            while ($row = $orders->fetch_assoc()) {
+                // Skip orders with status >= 3
                 if ($row['order_status'] >= 3) {
-                    continue; 
-                } ?>
+                    continue;
+                }
+                ?>
                 <tr>
                     <td><?php echo $row['order_id']; ?></td>
                     <td><?php echo $row['kind_of_wood']; ?></td>
@@ -101,24 +119,26 @@
                     <td><?php echo $row['source']; ?></td>
                     <td><?php echo $row['order_deadline']; ?></td>
                     <td><?php echo $row['comments']; ?></td>
-                    <?php echo "<td><button onclick='openForm(" . $row["order_id"] . ")'>Edytuj</button>"; ?>
-                    <a href="#" onclick="confirmDelete(<?php echo $row['order_id']; ?>)">Usuń</a>
-                    <input type="hidden" name="edit_id" value="<?php echo $row['order_id'] ?>">
-
+                    <td>
+                        <button onclick='openForm(<?php echo $row["order_id"]; ?>)'>Edytuj</button>
+                        <a href="#" onclick="confirmDelete(<?php echo $row['order_id']; ?>)">Usuń</a>
                     </td>
-                    </form>
-
                 </tr>
-            <?php endwhile;
-        } else { ?>
+                <?php
+            }
+        } else {
+            ?>
             <tr>
-                <td colspan='10'>Brak zamówień do wyświetlenia.</td>
+                <td colspan='13'>Brak zamówień do wyświetlenia.</td>
             </tr>
-        <?php } ?>
+            <?php
+        }
+        ?>
         <tr>
             <form action="add_order.php" method="post">
-                <td><input  name="order_id" placeholder="Auto" disabled type="hidden"></td>
-                <td><select type="text" name="kind_of_wood">
+                <td><input name="order_id" placeholder="Auto" disabled type="hidden"></td>
+                <td>
+                    <select type="text" name="kind_of_wood">
                         <option value="Buk">Buk</option>
                         <option value="Dąb">Dąb</option>
                         <option value="Jesion">Jesion</option>
@@ -138,7 +158,8 @@
                         <option value="3">Zakończone</option>
                     </select>
                 </td>
-                <td><select type="text" name="source">
+                <td>
+                    <select type="text" name="source">
                         <option value="Allegro">Allegro</option>
                         <option value="E-mail">E-mail</option>
                         <option value="SMS">SMS</option>
@@ -153,46 +174,44 @@
             </form>
         </tr>
     </table><br>
+
     <script>
         function openForm(orderId) {
             this.orderId = orderId;
-
             var currentUrl = window.location.href;
 
             if (currentUrl.indexOf('edit_id=') === -1) {
-
                 var separator = currentUrl.indexOf('?') !== -1 ? '&' : '?';
                 var editLink = currentUrl + separator + "edit_id=" + this.orderId;
-
                 window.location.href = editLink;
             } else {
-
                 var updatedLink = currentUrl.replace(/edit_id=\d+/g, 'edit_id=' + this.orderId);
-
                 window.location.href = updatedLink;
             }
         }
+
         function confirmDelete(orderId) {
-    
-    var confirmation = confirm("Czy na pewno chcesz usunąć to zamówienie? A nie przenieść do Archiwum?");
-    if (confirmation) {
-        window.location.href = "controllers/delete_order.php?id=" + orderId;
-    } else {}
-}
+            var confirmation = confirm("Czy na pewno chcesz usunąć to zamówienie? A nie przenieść do Archiwum?");
+            if (confirmation) {
+                window.location.href = "controllers/delete_order.php?id=" + orderId;
+            }
+        }
     </script>
 </body>
+</html>
 
-
-<?php require_once __DIR__ . '/../controllers/OrderEditor.php';
+<?php
+// Include order editor and form
+require_once __DIR__ . '/../controllers/OrderEditor.php';
 require_once 'EditOrderForm.php';
 
+// Handle edit form display
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["edit_id"])) {
     $order_id = $_GET["edit_id"];
     $orderEditor = new OrderEditor($mysqli);
     $orderData = $orderEditor->getOrderById($order_id);
 
     if ($orderData) {
-
         $editOrderForm = new EditOrderForm($orderData);
         echo $editOrderForm->render();
     } else {
@@ -200,6 +219,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["edit_id"])) {
     }
 }
 
+// Handle order update
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_id"])) {
     $order_id = $_POST["edit_id"];
     $formData = $_POST;
@@ -213,3 +233,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_id"])) {
         echo "Wystąpił problem podczas aktualizacji zamówienia.";
     }
 }
+?>

@@ -217,7 +217,7 @@
         totalPrice *= piece;
         
         var allegroPieces = totalPrice / basePricePerM2;
-        var totalPriceAllegro = allegroPieces * basePricePerM2;
+        var totalPriceAllegro = Math.ceil(allegroPieces) * basePricePerM2;
         console.log(totalPriceAllegro);
         var priceWithDiscount = totalPrice * 0.9;
         if (!isNaN(totalPrice)) {

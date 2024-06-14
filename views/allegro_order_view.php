@@ -5,7 +5,7 @@ session_start();
 include_once("views/structure/header.php");
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: /login_view.php");
+    header("Location: views/login_view.php");
     exit;
 }
 

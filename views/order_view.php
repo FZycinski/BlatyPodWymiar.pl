@@ -116,7 +116,7 @@
             </tr>
         <?php } ?>
         <tr>
-            <form action="add_order.php" method="post">
+            <form action="../controllers/add_order.php" method="post">
                 <td><input  name="order_id" placeholder="Auto" disabled type="hidden"></td>
                 <td><select type="text" name="kind_of_wood">
                         <option value="Buk">Buk</option>

@@ -32,7 +32,7 @@ foreach ($orderIdsArray as $orderId) {
 $config = include('config/api_config.php');
 define('CLIENT_ID', $config['client_id']);
 define('CLIENT_SECRET', $config['client_secret']);
-define('REDIRECT_URI', 'https://test.blatypodwymiar.pl/ShippingEntryPoint.php');
+define('REDIRECT_URI', $config['redirect_uri_shipping_view']);
 define('AUTH_URL', 'https://allegro.pl/auth/oauth/authorize');
 define('TOKEN_URL', 'https://allegro.pl/auth/oauth/token');
 
